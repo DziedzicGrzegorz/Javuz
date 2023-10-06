@@ -1,19 +1,19 @@
-package SingleNumber_136;
-
+package LeetCode;
 import java.util.HashSet;
 import java.util.Iterator;
 
-
 public class SingleNumber136 {
     public static void main(String[] args) {
+        // Tutaj sprawdzam czy działa
 
-        int unique = solution(new int[]{1, 2, 2});
+        SingleNumber136 toTest = new SingleNumber136();
+        int unique = toTest.solution_1(new int[]{1, 2, 2});
         System.out.println(unique);
     }
 
     //Runtime ~28.05%
     //Memory ~99.02%
-    public static int solution(int[] nums) {
+    public int solution_1(int[] nums) {
         HashSet<Integer> unique = new HashSet<>();
 
         for (int num : nums) {
@@ -25,5 +25,7 @@ public class SingleNumber136 {
         Iterator<Integer> it = unique.iterator();
         return it.next();
     }
+    //Jeśli chcesz dodać rozwiązanie stwórz swoją metodę poniżej tej linii
+
 
 }
