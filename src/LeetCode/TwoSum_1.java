@@ -1,5 +1,7 @@
 package LeetCode;
 
+import java.util.HashSet;
+
 public class TwoSum_1 {
     //runtime beats 32%
     //memory beats 66%
