@@ -25,6 +25,8 @@ Porównywanie rozwiązań pod względem czasu, pamięci i czytelności.
     │── LeetCode
     │    └── NameNr
     │    └── NameNr 
+    │── DataStruct
+    │   └── StructName
 
 ## Jak mogę przyczynić się do repozytorium?
 
