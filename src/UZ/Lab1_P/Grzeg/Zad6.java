@@ -1,5 +1,7 @@
 package UZ.Lab1_P.Grzeg;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.Collections;
 import java.util.TreeMap;
 
@@ -13,10 +15,12 @@ public class Zad6 {
     }};
     final static double maxPaidInEquityCapital = 300_000.00;
     final static double maxPercentageInEquityCapital = 70;
+    private double installment;
 
     public static void main(String[] args) {
         Zad6 temp = new Zad6();
         temp.countMonthlyInstallment(20, 0, 200_000);
+        temp.printfInstallment();
     }
 
     public void displayInterestTable() {
@@ -35,14 +39,14 @@ public class Zad6 {
 
     public void countMonthlyInstallment(int numberOfInstallments, double paidInEquityCapital, double priceOfCar)  {
         this.countInstallmentGuard(paidInEquityCapital, priceOfCar);
-
+        // I don't even know how banks count this but Google knows
         double remainingAmount = priceOfCar - paidInEquityCapital;
         double monthlyInterestRate = this.leasingInterestRate(numberOfInstallments) / 100.0 / 12.0;
-        double installment = remainingAmount *
+        this.installment = remainingAmount *
                 monthlyInterestRate /
                 (1 - Math.pow(1 + monthlyInterestRate, -numberOfInstallments));
 
-        System.out.println(installment);
+
     }
     //this method is for checking if user can pay installment
     private void countInstallmentGuard(double paidInEquityCapital, double priceOfCar) throws IllegalArgumentException{
@@ -60,5 +64,8 @@ public class Zad6 {
             throw new IllegalArgumentException("Paid in equity capital can't be greater than " + maxPercentageInEquityCapital + " of price of car");
         }
     }
-
+    public void printfInstallment() {
+        BigDecimal roundInstallment = new BigDecimal(this.installment).setScale(2, RoundingMode.CEILING);
+        System.out.println("Your installment is " + roundInstallment + " PLN");
+    }
 }
