@@ -6,8 +6,6 @@ public class MinimumNumberofOperationstoMakeArrayContinuous_2009 {
     public static void main(String[] args) {
         MinimumNumberofOperationstoMakeArrayContinuous_2009 toTest = new MinimumNumberofOperationstoMakeArrayContinuous_2009();
         int unique = toTest.solution_1(new int[]{4, 2, 5, 3});
-
-
     }
 
     public int solution_1(int[] nums) {
@@ -22,14 +20,11 @@ public class MinimumNumberofOperationstoMakeArrayContinuous_2009 {
 
         nums[0] = maxElMinusLength;
         for (int i = 1; i < nums.length; i++) {
-            if(nums[i] == nums[i-1]){
+            if (nums[i] == nums[i - 1]) {
                 nums[i]++;
                 step++;
             }
-
-
         }
-
         return step;
     }
 }
