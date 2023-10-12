@@ -17,37 +17,37 @@ public class Zad5 {
     }
 
     public void add(double number) {
-        this.result += number;
+        result += number;
     }
 
     public void subtract(double number) {
-        this.result -= number;
+        result -= number;
     }
 
     public void multiply(double number) {
-        this.result *= number;
+        result *= number;
     }
 
     public void divide(double number) throws Exception {
         if (number == 0) {
             throw new Exception("You can't divide by 0");
         }
-        this.result /= number;
+        result /= number;
     }
 
     public void clear() {
-        this.result = 0;
+        result = 0;
     }
 
     public void displayResult() {
-        System.out.println("Result of your operations is " + this.result);
+        System.out.println("Result of your operations is " + result);
     }
 
     public void runCalculator() {
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("Enter initial number:" + "If you want to Quit just press Q and enter");
-        this.result = takeUserDoubleInLoopIfInvalid(scanner);
+        result = takeUserDoubleInLoopIfInvalid(scanner);
 
 
         while (true) {
@@ -106,16 +106,16 @@ public class Zad5 {
     private void mathOperations(String operation, double userNumber) throws Exception {
         switch (operation) {
             case "+":
-                this.add(userNumber);
+                add(userNumber);
                 break;
             case "-":
-                this.subtract(userNumber);
+                subtract(userNumber);
                 break;
             case "*":
-                this.multiply(userNumber);
+                multiply(userNumber);
                 break;
             case "/":
-                this.divide(userNumber);
+                divide(userNumber);
                 break;
             default:
                 System.out.println("Invalid operation");

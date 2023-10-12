@@ -38,11 +38,11 @@ public class Zad6 {
     }
 
     public void countMonthlyInstallment(int numberOfInstallments, double paidInEquityCapital, double priceOfCar)  {
-        this.countInstallmentGuard(paidInEquityCapital, priceOfCar);
+        countInstallmentGuard(paidInEquityCapital, priceOfCar);
         // I don't even know how banks count this but Google knows
         double remainingAmount = priceOfCar - paidInEquityCapital;
-        double monthlyInterestRate = this.leasingInterestRate(numberOfInstallments) / 100.0 / 12.0;
-        this.installment = remainingAmount *
+        double monthlyInterestRate = leasingInterestRate(numberOfInstallments) / 100.0 / 12.0;
+        installment = remainingAmount *
                 monthlyInterestRate /
                 (1 - Math.pow(1 + monthlyInterestRate, -numberOfInstallments));
 
@@ -65,7 +65,7 @@ public class Zad6 {
         }
     }
     public void printfInstallment() {
-        BigDecimal roundInstallment = new BigDecimal(this.installment).setScale(2, RoundingMode.CEILING);
+        BigDecimal roundInstallment = new BigDecimal(installment).setScale(2, RoundingMode.CEILING);
         System.out.println("Your installment is " + roundInstallment + " PLN");
     }
 }

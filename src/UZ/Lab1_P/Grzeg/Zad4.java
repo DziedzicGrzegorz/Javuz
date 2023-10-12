@@ -25,20 +25,20 @@ public class Zad4 {
             throw new Exception("No numbers to compute stats");
         }
         double sum = 0;
-        this.quantity = userNumbers.size();
-        this.min = Collections.min(userNumbers);
-        this.max = Collections.max(userNumbers);
+        quantity = userNumbers.size();
+        min = Collections.min(userNumbers);
+        max = Collections.max(userNumbers);
 
-        for (double number : this.userNumbers) {
+        for (double number : userNumbers) {
             sum += number;
         }
-        this.average = sum / this.quantity;
+        average = sum / quantity;
     }
 
     private void takeNumberFromUser() {
 
         Scanner scanner = new Scanner(System.in);
-        this.printfInstructions();
+        printfInstructions();
 
         while (true) {
             String input = scanner.nextLine();
@@ -61,7 +61,7 @@ public class Zad4 {
 //            double number = Double.parseDouble(input);
             Double number = Double.valueOf(input);
 
-            this.userNumbers.add(number);
+            userNumbers.add(number);
         } catch (NumberFormatException e) {
             System.out.println("Wrong input. Try again.");
         }
@@ -83,14 +83,14 @@ public class Zad4 {
 
         String printFormat = "%." + numbersAfterComma + "f";
 
-        System.out.println("Min: " + String.format(printFormat, this.min));
-        System.out.println("Max: " + String.format(printFormat, this.max));
-        System.out.println("Average: " + String.format(printFormat, this.average));
-        System.out.println("Quantity: " + this.quantity);
+        System.out.println("Min: " + String.format(printFormat, min));
+        System.out.println("Max: " + String.format(printFormat, max));
+        System.out.println("Average: " + String.format(printFormat, average));
+        System.out.println("Quantity: " + quantity);
     }
 
 
     public double[] get() {
-        return new double[]{this.min, this.max, this.average, this.quantity};
+        return new double[]{min, max, average, quantity};
     }
 }
