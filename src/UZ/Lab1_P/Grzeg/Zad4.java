@@ -24,11 +24,11 @@ public class Zad4 {
         if (userNumbers.isEmpty()) {
             throw new Exception("No numbers to compute stats");
         }
-        double sum = 0;
         quantity = userNumbers.size();
         min = Collections.min(userNumbers);
         max = Collections.max(userNumbers);
 
+        double sum = 0;
         for (double number : userNumbers) {
             sum += number;
         }
