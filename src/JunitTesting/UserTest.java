@@ -20,18 +20,28 @@ class UserTest {
 
     @Test
     void getUser() {
-       var tmp = new User("Jan", "Kowalski", 20, "example@gmail.com");
-        assertSame(tmp, tmp.getUser(),"User is not the same");
+        var tmp = new User("Jan", "Kowalski", 20, "example@gmail.com");
+        assertSame(tmp, tmp.getUser(), "User is not the same");
     }
 
 
     @Test
     void getName() {
-        var user = new User("Kacper","Borucha",12,"esa@gmail.com");
-        assertSame("Monika",user.getName());
+        var user = new User("Kacper", "Borucha", 12, "esa@gmail.com");
+        assertSame("Monika", user.getName());
+    }
+
+    @Test
+    void User() {
+        var tmp = new User("Jan", "Kowalski", 20, "example@gmail.com");
+        assertSame(tmp, tmp.getUser(), "User is not the same");
     }
 
     @Test
     void setUser() {
+        //test it
+        var tmp = new User("Jan", "Kowalski", 20, "example@gmail.com");
+        tmp.setUser("Kacper");
+        assertSame("Kacper", tmp.getName(), "User is not the sameA");
     }
 }
