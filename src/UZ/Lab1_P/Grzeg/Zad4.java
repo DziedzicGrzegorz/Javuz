@@ -1,14 +1,13 @@
 package UZ.Lab1_P.Grzeg;
 
-import java.util.ArrayList;
-import java.util.Scanner;
+import java.util.*;
 
 public class Zad4 {
     private double min;
     private double max;
     private double average;
     private int quantity;
-    final private ArrayList<Double> numbers = new ArrayList<>();
+    final private ArrayList<Double> userNumbers = new ArrayList<>();
 
     public static void main(String[] args) throws Exception {
         Zad4 temp = new Zad4();
@@ -16,7 +15,65 @@ public class Zad4 {
     }
 
     public Zad4() throws Exception {
+        takeNumberFromUser();
         computeStats();
+    }
+
+    private void computeStats() throws Exception {
+
+        if (userNumbers.isEmpty()) {
+            throw new Exception("No numbers to compute stats");
+        }
+        quantity = userNumbers.size();
+        min = Collections.min(userNumbers);
+        max = Collections.max(userNumbers);
+
+        double sum = 0;
+        for (double number : userNumbers) {
+            sum += number;
+        }
+        average = sum / quantity;
+    }
+
+    private void takeNumberFromUser() {
+
+        Scanner scanner = new Scanner(System.in);
+        printfInstructions();
+
+        while (true) {
+            String input = scanner.nextLine();
+            if (isQuitCommand(input)) {
+                break;
+            }
+            addNumber(input);
+        }
+        scanner.close();
+    }
+
+    private void addNumber(String input) {
+                /*
+        Podsumowując, używając Double.parseDouble(input),
+        uzyskujesz wartość prymitywną double, ale kiedy dodajesz tę wartość do listy userNumbers,
+        Java automatycznie przekształca tę wartość prymitywną na jej odpowiednik - typ obiektowy Double.
+        Double.valueOf(input) --> obiekty Double
+          */
+        try {
+//            double number = Double.parseDouble(input);
+            Double number = Double.valueOf(input);
+
+            userNumbers.add(number);
+        } catch (NumberFormatException e) {
+            System.out.println("Wrong input. Try again.");
+        }
+    }
+
+    private void printfInstructions() {
+        System.out.println("Enter a number and confirm it with Enter. If you want to quit, press 'q' and Enter or just Enter on empty line.");
+    }
+
+    private boolean isQuitCommand(String input) {
+        String trimmedInput = input.trim();
+        return trimmedInput.equalsIgnoreCase("q") || trimmedInput.isEmpty();
     }
 
     public void displayStats(int numbersAfterComma) throws IllegalArgumentException {
@@ -26,52 +83,14 @@ public class Zad4 {
 
         String printFormat = "%." + numbersAfterComma + "f";
 
-        System.out.println("Min: " + String.format(printFormat, this.min));
-        System.out.println("Max: " + String.format(printFormat, this.max));
-        System.out.println("Average: " + String.format(printFormat, this.average));
-        System.out.println("Quantity: " + this.quantity);
+        System.out.println("Min: " + String.format(printFormat, min));
+        System.out.println("Max: " + String.format(printFormat, max));
+        System.out.println("Average: " + String.format(printFormat, average));
+        System.out.println("Quantity: " + quantity);
     }
 
-
-    private void computeStats() throws Exception {
-        takeNumberFromUser();
-
-        if (numbers.isEmpty()) {
-            throw new Exception("No numbers to compute stats");
-        }
-        double sum = 0;
-        this.quantity = numbers.size();
-
-        for (double number : numbers) {
-            this.min = Math.min(min, number);
-            this.max = Math.max(max, number);
-            sum += number;
-        }
-        this.average = sum / this.quantity;
-    }
-
-
-    private void takeNumberFromUser() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter a number and confirm it with Enter. If you want to quit, press 'q' and Enter.");
-
-        while (true) {
-            String input = scanner.nextLine();
-            try {
-                double number = Double.parseDouble(input);
-                numbers.add(number);
-            } catch (NumberFormatException error) {
-                if (input.equalsIgnoreCase("q")) {
-                    break;
-                } else {
-                    System.out.println("Incorrect format, please enter again.");
-                }
-            }
-        }
-        scanner.close();
-    }
 
     public double[] get() {
-        return new double[]{this.min, this.max, this.average, this.quantity};
+        return new double[]{min, max, average, quantity};
     }
 }

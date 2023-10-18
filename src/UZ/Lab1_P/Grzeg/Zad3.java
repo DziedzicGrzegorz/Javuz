@@ -6,6 +6,6 @@ class Zad3 {
     }
 
     private static double convertMilesToKm(double miles) {
-        return miles * 1.609344;
+        return miles * 1.61;
     }
 }
