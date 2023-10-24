@@ -2,6 +2,8 @@ package LeetCode;
 
 
 public class NumberOfGoodPairs_1512 {
+    // Runtime 75.16%
+    // Memory 99.66%
         public static int Solution_1(int[] nums) {
             int wynik = 0;
             for(int i = 0;i < nums.length;i++){
