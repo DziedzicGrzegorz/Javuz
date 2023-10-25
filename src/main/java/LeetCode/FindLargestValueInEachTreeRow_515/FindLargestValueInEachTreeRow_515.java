@@ -1,6 +1,7 @@
 package LeetCode.FindLargestValueInEachTreeRow_515;
 
 import java.util.*;
+import java.security.SecureRandom;
 
 public class FindLargestValueInEachTreeRow_515 {
 
@@ -8,7 +9,8 @@ public class FindLargestValueInEachTreeRow_515 {
     public static void main(String[] args) {
         FindLargestValueInEachTreeRow_515 test = new FindLargestValueInEachTreeRow_515();
 
-        System.out.println(test.solution_1(test.doMockTree(new LinkedList<>(Arrays.asList(1, 3, 2, 5, 3, null, 9,1,2)))));
+        System.out.print(test.solution_1(test.doMockTree(test.randomBigTree(15))));//nie dawac wiecej niz 16 pls
+        //System.out.println(test.solution_1(test.doMockTree(new LinkedList<>(Arrays.asList(1, 3, 2, 5, 3, null, 9,1,2,8)))));
 
 
     }
@@ -94,8 +96,21 @@ public class FindLargestValueInEachTreeRow_515 {
             return;
 
         System.out.println(indent + root.val);
-        printTreeWithIndentation(root.left, indent + "  ");
-        printTreeWithIndentation(root.right, indent + "  ");
+        printTreeWithIndentation(root.left, STR."\{indent}  ");
+        printTreeWithIndentation(root.right, STR."\{indent}  ");
     }
 
+    public LinkedList<Integer> randomBigTree(int lvl){
+        SecureRandom rand = new SecureRandom();
+
+        int valueOfAllLeaf = (int) Math.pow(2, lvl) - 1;
+
+        LinkedList<Integer> randomArraylist = new LinkedList<Integer>();
+        for (int i = 0; i < valueOfAllLeaf; i++) {
+            int randval = rand.nextInt(10000);
+            randomArraylist.add(randval);
+        }
+
+        return randomArraylist;
+    }
 }
