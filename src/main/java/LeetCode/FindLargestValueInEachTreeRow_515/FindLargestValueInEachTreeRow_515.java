@@ -82,7 +82,7 @@ public class FindLargestValueInEachTreeRow_515 {
             for(int i=0;i<n;i++){
                 TreeNode node = queue.poll();
                 assert node != null;
-                System.out.print(" " + node.val);
+                System.out.print(STR." \{node.val}");
                 if(node.left != null)
                     queue.add(node.left);
                 if(node.right != null)
