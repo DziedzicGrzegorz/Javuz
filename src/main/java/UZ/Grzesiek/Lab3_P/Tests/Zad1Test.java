@@ -47,7 +47,7 @@ class Zad1Test {
 
             primeNumbers = gson.fromJson(jsonObject.get("primeNumbers"), typeOfList);
             notPrimeNumbers = gson.fromJson(jsonObject.get("notPrimeNumbers"), typeOfList);
-            oddToEvenRatio = gson.fromJson(jsonObject.get("oddToEvenRatio"), typeOfMap);
+            oddToEvenRatio = gson.fromJson(jsonObject.get("evenToOddRatio"), typeOfMap);
 
         } catch (IOException e) {
             System.out.println("Error while reading JSON file");
@@ -77,7 +77,7 @@ class Zad1Test {
         int even = 0;
         Zad1 zad1 = new Zad1();
         //makes public method accessible
-        Method oddToEvenRatioTest = Zad1.class.getDeclaredMethod("oddToEvenRatio", int.class);
+        Method oddToEvenRatioTest = Zad1.class.getDeclaredMethod("evenToOddRatio", int.class);
         oddToEvenRatioTest.setAccessible(true);
 
 

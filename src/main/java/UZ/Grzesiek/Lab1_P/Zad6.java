@@ -5,8 +5,11 @@ import java.math.RoundingMode;
 import java.util.Collections;
 import java.util.TreeMap;
 
+
 /**
- * This class represents a calculator for calculating monthly installments for leasing a car.
+ * The Zad6 class represents a car leasing calculator. It calculates the monthly installment for a car lease based on
+ * the number of installments, paid in equity capital, and price of the car. The class also provides methods for
+ * checking if the installment can be paid and for displaying the calculated installment.
  */
 public class Zad6 {
     static TreeMap<Integer, Integer> interestTable = new TreeMap<>() {{
