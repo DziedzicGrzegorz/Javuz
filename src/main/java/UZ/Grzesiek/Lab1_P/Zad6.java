@@ -5,6 +5,12 @@ import java.math.RoundingMode;
 import java.util.Collections;
 import java.util.TreeMap;
 
+
+/**
+ * The Zad6 class represents a car leasing calculator. It calculates the monthly installment for a car lease based on
+ * the number of installments, paid in equity capital, and price of the car. The class also provides methods for
+ * checking if the installment can be paid and for displaying the calculated installment.
+ */
 public class Zad6 {
     static TreeMap<Integer, Integer> interestTable = new TreeMap<>() {{
         put(24, 2);
@@ -17,27 +23,29 @@ public class Zad6 {
     final static double maxPercentageInEquityCapital = 70;
     private double installment;
 
+
     public static void main(String[] args) {
-        Zad6 temp = new Zad6();
-        temp.countMonthlyInstallment(20, 0, 200_000);
-        temp.printfInstallment();
+        Zad6 temp = new Zad6(20, 0, 200_000);
     }
 
-    public void displayInterestTable() {
-        System.out.println(interestTable);
+    Zad6(int numberOfInstallments, double paidInEquityCapital, double priceOfCar) {
+        countMonthlyInstallment(numberOfInstallments, paidInEquityCapital, priceOfCar);
+        printfInstallment();
     }
 
     private int leasingInterestRate(int numberOfInstallments) throws IllegalArgumentException {
         if (numberOfInstallments > Collections.max(interestTable.keySet())) {
-            throw new IllegalArgumentException("Months must be less than " + Collections.max(interestTable.keySet()));
+            throw new IllegalArgumentException(STR."Months must be less than \{Collections.max(interestTable.keySet())}");
         }
-
+        /*
+         * if userwant to pay 22 installments he will pay the same interest rate as for 24 installments
+         *
+         * */
         int fullMonthsToCalcInterest = interestTable.ceilingKey(numberOfInstallments);
-        System.out.println(interestTable.get(fullMonthsToCalcInterest));
         return interestTable.get(fullMonthsToCalcInterest);
     }
 
-    public void countMonthlyInstallment(int numberOfInstallments, double paidInEquityCapital, double priceOfCar)  {
+    public void countMonthlyInstallment(int numberOfInstallments, double paidInEquityCapital, double priceOfCar) {
         countInstallmentGuard(paidInEquityCapital, priceOfCar);
         // I don't even know how banks count this but Google knows
         double remainingAmount = priceOfCar - paidInEquityCapital;
@@ -45,13 +53,12 @@ public class Zad6 {
         installment = remainingAmount *
                 monthlyInterestRate /
                 (1 - Math.pow(1 + monthlyInterestRate, -numberOfInstallments));
-
-
     }
+
     //this method is for checking if user can pay installment
-    private void countInstallmentGuard(double paidInEquityCapital, double priceOfCar) throws IllegalArgumentException{
+    private void countInstallmentGuard(double paidInEquityCapital, double priceOfCar) throws IllegalArgumentException {
         if (paidInEquityCapital > maxPaidInEquityCapital) {
-            throw new IllegalArgumentException("You can't pay more than " + maxPaidInEquityCapital);
+            throw new IllegalArgumentException(STR."You can't pay more than \{maxPaidInEquityCapital}");
         }
         if (paidInEquityCapital < 0) {
             throw new IllegalArgumentException("You can't pay less than 0");
@@ -61,11 +68,12 @@ public class Zad6 {
         }
         //maxPercentageInEquityCapital*100 cast % to math value
         if (paidInEquityCapital > maxPercentageInEquityCapital * 100 * priceOfCar) {
-            throw new IllegalArgumentException("Paid in equity capital can't be greater than " + maxPercentageInEquityCapital + " of price of car");
+            throw new IllegalArgumentException(STR."Paid in equity capital can't be greater than \{maxPercentageInEquityCapital} of price of car");
         }
     }
+
     public void printfInstallment() {
         BigDecimal roundInstallment = new BigDecimal(installment).setScale(2, RoundingMode.CEILING);
-        System.out.println("Your installment is " + roundInstallment + " PLN");
+        System.out.println(STR."Your installment is \{roundInstallment} PLN");
     }
 }

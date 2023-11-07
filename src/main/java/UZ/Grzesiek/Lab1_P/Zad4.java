@@ -14,7 +14,7 @@ public class Zad4 {
         temp.displayStats(12);
     }
 
-    public Zad4() throws Exception {
+    Zad4() throws Exception {
         takeNumberFromUser();
         computeStats();
     }
@@ -51,12 +51,12 @@ public class Zad4 {
     }
 
     private void addNumber(String input) {
-                /*
+/*
         Podsumowując, używając Double.parseDouble(input),
         uzyskujesz wartość prymitywną double, ale kiedy dodajesz tę wartość do listy userNumbers,
         Java automatycznie przekształca tę wartość prymitywną na jej odpowiednik - typ obiektowy Double.
         Double.valueOf(input) --> obiekty Double
-          */
+ */
         try {
 //            double number = Double.parseDouble(input);
             Double number = Double.valueOf(input);
@@ -81,12 +81,12 @@ public class Zad4 {
             throw new IllegalArgumentException("numbersAfterComma must be greater than 0 and less than 16");
         }
 
-        String printFormat = "%." + numbersAfterComma + "f";
+        String printFormat = STR."%.\{numbersAfterComma}f";
 
-        System.out.println("Min: " + String.format(printFormat, min));
-        System.out.println("Max: " + String.format(printFormat, max));
-        System.out.println("Average: " + String.format(printFormat, average));
-        System.out.println("Quantity: " + quantity);
+        System.out.println(STR."Min: \{String.format(printFormat, min)}");
+        System.out.println(STR."Max: \{String.format(printFormat, max)}");
+        System.out.println(STR."Average: \{String.format(printFormat, average)}");
+        System.out.println(STR."Quantity: \{quantity}");
     }
 
 

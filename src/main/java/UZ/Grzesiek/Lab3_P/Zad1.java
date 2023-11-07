@@ -4,6 +4,26 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * The {@code Zad1} class calculates simple operations on integer values.
+ *
+ * <p> It consists of four methods:
+ *
+ * <ul>
+ * <li> {@code public boolean isPrimeNumber(int number)}:
+ *      This method checks if a given integer number is a prime number.
+ *      It returns true if the number is a prime number and false otherwise.
+ *
+ * <li> {@code public double evenToOddRatio(int number)}:
+ *      This method calculates the ratio of the average of the even digits to the average of the odd digits in a given number.
+ *
+ * <li> {@code public int getIntegerFromUserInLoopIfWrongType()}:
+ *      This method prompts the user to enter an integer until a correct integer is entered.
+ *
+ * <li> {@code public void displayStats()}:
+ *      This method displays statistical information for userInteger.
+ * </ul>
+ */
 public class Zad1 {
     protected int userInteger;
 
@@ -11,7 +31,6 @@ public class Zad1 {
         Zad1 zad1 = new Zad1();
         zad1.getIntegerFromUserInLoopIfWrongType();
         zad1.displayStats();
-
     }
 
     public boolean isPrimeNumber(int number) {
@@ -26,7 +45,7 @@ public class Zad1 {
         return true;
     }
 
-    public double oddToEvenRatio(int number) {
+    public double evenToOddRatio(int number) {
         number = Math.abs(number);
 
         List<Integer> odd = new ArrayList<>();
@@ -46,15 +65,9 @@ public class Zad1 {
             return 0.0;
         }
 
-//        AtomicReference<Double> oddAverage = new AtomicReference<>();
-//        AtomicReference<Double> evenAverage =  new AtomicReference<>();
-//
-//        odd.stream().mapToInt(i -> i).average().ifPresent(oddAverage::set);
-//        even.stream().mapToInt(i -> i).average().ifPresent(evenAverage::set);
 
-//      I check above that both lists are not empty
-        return odd.stream().mapToInt(i -> i).average().getAsDouble()
-                / even.stream().mapToInt(i -> i).average().getAsDouble();
+        return even.stream().mapToInt(i -> i).average().getAsDouble()
+                / odd.stream().mapToInt(i -> i).average().getAsDouble();
     }
 
     public int getIntegerFromUserInLoopIfWrongType() {
@@ -74,9 +87,6 @@ public class Zad1 {
 
     public void displayStats() {
         System.out.println(STR."Is prime number: \{isPrimeNumber(userInteger)}");
-        System.out.println(STR."Odd to even ratio: \{oddToEvenRatio(userInteger)}");
-
-
+        System.out.println(STR."Odd to even ratio: \{evenToOddRatio(userInteger)}");
     }
-
 }

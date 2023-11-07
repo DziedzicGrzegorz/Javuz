@@ -40,7 +40,7 @@ public class Zad5 {
     }
 
     public void displayResult() {
-        System.out.println("Result of your operations is " + result);
+        System.out.println(STR."Result of your operations is \{result}");
     }
 
     public void runCalculator() {
@@ -60,10 +60,9 @@ public class Zad5 {
             try {
                 mathOperations(validUserOperation, validNumberToOperate);
                 displayResult();
-            } catch (Exception ex) {
-                System.out.println(ex.getMessage());
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
             }
-
         }
     }
 
@@ -78,7 +77,6 @@ public class Zad5 {
                 System.out.println("Wrong input. Try again.");
             }
         }
-
     }
 
     private String takeUserOperationInLoopIfInvalid(Scanner scanner) {
@@ -90,7 +88,6 @@ public class Zad5 {
             }
             brakeProgramIfQuitCommand(userOperation, scanner);
             System.out.println("Operation not allowed Try again");
-
         }
     }
 
@@ -100,7 +97,6 @@ public class Zad5 {
             scanner.close();
             System.exit(0);
         }
-
     }
 
     private void mathOperations(String operation, double userNumber) throws Exception {
@@ -120,6 +116,5 @@ public class Zad5 {
             default:
                 System.out.println("Invalid operation");
         }
-
     }
 }

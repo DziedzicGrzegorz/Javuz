@@ -4,49 +4,33 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class Zad5 {
-    int userInteger;
+
+/**
+ * The {@code Zad5} class is a subclass of {@code Zad1} and performs calculations based on user input.
+ *
+ * <p> It calculates a list of numbers less than a given power and displays statistical information.
+ *
+ * @see Zad1
+ */
+public class Zad5 extends Zad1 {
     List<Integer> calcNums = new ArrayList<>();
 
     public static void main(String[] args) {
         Zad5 zad5 = new Zad5();
-
     }
 
     public Zad5() {
         getIntegerFromUserInLoopIfWrongType();
-        calculateNumsLessThanPow3(userInteger, 2);
+        userInteger = Math.abs(userInteger);
+        calculateNumsLessThanPow(userInteger, 3);
         displayStats();
     }
 
-    public List<Integer> calculateNumsLessThanPow3(int userIntegerToCalc, int power) {
+    public void calculateNumsLessThanPow(int userIntegerToCalc, int power) {
         int num = power;
         while (num < userIntegerToCalc) {
             calcNums.add(num);
             num *= power;
-        }
-        return calcNums;
-
-    }
-
-
-    public int getIntegerFromUserInLoopIfWrongType() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter a positive integer: ");
-
-        while (true) {
-            String userInput = scanner.nextLine().trim();
-            try {
-                int userInputParset = Integer.parseInt(userInput);
-                if (userInputParset < 0) {
-                    System.out.println("Integer must be positive. Try again.");
-                    continue;
-                }
-                userInteger = userInputParset;
-                return userInteger;
-            } catch (NumberFormatException e) {
-                System.out.println("Wrong input. Try again.");
-            }
         }
     }
 
