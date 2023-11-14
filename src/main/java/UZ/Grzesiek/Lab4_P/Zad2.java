@@ -15,8 +15,7 @@ public class Zad2 {
     //@TODO sprawidzić czy to wszystko wgl działa
     Integer[][] matrix;
 
-    public Zad2() {
-    }
+    public Zad2() {}
 
     public Zad2(int j) {
         matrix = new Integer[j][j];
