@@ -66,8 +66,8 @@ public class Zad1 {
         }
 
 
-        return even.stream().mapToInt(i -> i).average().getAsDouble()
-                / odd.stream().mapToInt(i -> i).average().getAsDouble();
+        return odd.stream().mapToInt(i -> i).average().getAsDouble()
+                / even.stream().mapToInt(i -> i).average().getAsDouble();
     }
 
     public int getIntegerFromUserInLoopIfWrongType() {

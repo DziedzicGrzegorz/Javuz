@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 class Zad2 {
     public static void main(String[] args) throws Exception {
-        System.out.print(Arrays.toString(Zad2.quadratic(1, -5, 6)));
+        System.out.print(Arrays.toString(Zad2.quadratic(1, 3, -15)));
     }
 
     private static double[] quadratic(double a, double b, double c) throws Exception {
@@ -17,13 +17,17 @@ class Zad2 {
             double rootEquation = -b / (2 * a);
             return new double[]{rootEquation};
         }
+        if (delta > 0) {
+            double squareOfDelta = Math.sqrt(delta);
 
-        double squareOfDelta = Math.sqrt(delta);
+            double firstRootEquation = (-b - squareOfDelta) / 2 * a;
+            double secondRootEquation = (-b + squareOfDelta) / 2 * a;
 
-        double firstRootEquation = (-b - squareOfDelta) / 2 * a;
-        double secondRootEquation = (-b + squareOfDelta) / 2 * a;
+            return new double[]{firstRootEquation, secondRootEquation};
+        }
 
-        return new double[]{firstRootEquation, secondRootEquation};
+
+        return new double[]{};
     }
 }
 
