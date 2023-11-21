@@ -15,18 +15,18 @@ public class Zad4 extends Zad1 {
     }
 
     public void bubbleSort(){
-        for (int i = 0; i < randomArray.length; i++) {
-            for (int j = 0; j < randomArray.length-1; j++) {
-                if(randomArray[j]>randomArray[j+1]){
-                    int temp = randomArray[j];
-                    randomArray[j] = randomArray[j+1];
-                    randomArray[j+1] = temp;
+        for (int i = 0; i < arrayOfRandInt.length; i++) {
+            for (int j = 0; j < arrayOfRandInt.length-1; j++) {
+                if(arrayOfRandInt[j]> arrayOfRandInt[j+1]){
+                    int temp = arrayOfRandInt[j];
+                    arrayOfRandInt[j] = arrayOfRandInt[j+1];
+                    arrayOfRandInt[j+1] = temp;
                 }
             }
         }
     }
     public void quickSort(){
-        quickSort(randomArray, 0, randomArray.length-1);
+        quickSort(arrayOfRandInt, 0, arrayOfRandInt.length-1);
     }
     private void quickSort(Integer[] arr, int left, int right){
         if(left>=right){
@@ -52,11 +52,7 @@ public class Zad4 extends Zad1 {
                 left++;
                 right--;
             }
-
         }
         return left;
     }
-
-
-
 }

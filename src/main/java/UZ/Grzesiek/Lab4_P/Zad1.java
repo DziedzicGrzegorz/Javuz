@@ -9,15 +9,16 @@ Za pomocą pętli zapisz w kolejnych komórkach liczby losowo wygenerowane z
 przedziału od 99-150. Wykonać kopię do nowej tablicy.
 * */
 public class Zad1 {
-    Integer[] randomArray;
+    Integer[] arrayOfRandInt;
     public static void main(String[] args) {
         Zad1 test = new Zad1(30,99, 150);
+        test.displayArray();
 
     }
     Zad1(){}
     Zad1(int size, int lowerBoundIncluded, int upperBoundIncluded){
-        randomArray = new Integer[size];
-        tillArrayWithRandomNumbers(randomArray, lowerBoundIncluded, upperBoundIncluded);
+        arrayOfRandInt = new Integer[size];
+        tillArrayWithRandomNumbers(arrayOfRandInt, lowerBoundIncluded, upperBoundIncluded);
 
     }
     public void tillArrayWithRandomNumbers(Integer[] arr, int lowerBoundIncluded, int upperBoundIncluded){
@@ -27,11 +28,11 @@ public class Zad1 {
         }
     }
     public Integer[] copy(){
-        Integer[] copy = new Integer[randomArray.length];
-         System.arraycopy(randomArray, 0,copy , 0, randomArray.length);
+        Integer[] copy = new Integer[arrayOfRandInt.length];
+         System.arraycopy(arrayOfRandInt, 0,copy , 0, arrayOfRandInt.length);
             return copy;
     }
     public void displayArray(){
-        System.out.println(Arrays.toString(randomArray));
+        System.out.println(Arrays.toString(arrayOfRandInt));
     }
 }
