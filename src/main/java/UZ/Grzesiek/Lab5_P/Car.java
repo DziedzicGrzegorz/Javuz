@@ -3,6 +3,9 @@ package UZ.Grzesiek.Lab5_P;
 import java.time.LocalDate;
 import java.time.Period;
 
+/**
+ * The Car class represents a car with its attributes and functionality.
+ */
 public class Car {
     private String make;
     private String model;
@@ -14,11 +17,12 @@ public class Car {
     private double price;
 
     public static void main(String[] args) {
-        Car test = new Car("BMW", "M3", 3000, "Sedan", "Petrol", 2019, LocalDate.of(2021,2,28), 100000);
-        System.out.println(test.checkWarranty());
+        Car test = new Car("BMW", "M3", 3000, "Sedan", "Petrol", 2019, LocalDate.of(2021, 2, 28), 100000);
+        System.out.println(test.toString());
     }
 
-    public Car() {}
+    public Car() {
+    }
 
     public Car(String make, String model, int engineCapacity, String bodyType, String engineType,
                int yearOfProduction, LocalDate firstRegistrationDate, double price) {
@@ -35,7 +39,6 @@ public class Car {
     public String checkWarranty() {
         LocalDate nowInTime = LocalDate.now();
         Period periodBetweenFirstRegistrationAndNow = Period.between(firstRegistrationDate, nowInTime);
-//        System.out.println(periodBetweenFirstRegistrationAndNow.isZero());
 
 
         if (periodBetweenFirstRegistrationAndNow.getYears() < 2) {
@@ -45,5 +48,8 @@ public class Car {
         }
     }
 
-
+    @Override
+    public String toString() {
+        return STR."brand='\{make}',\nmodel='\{model}',\nengineCapacity=\{engineCapacity},\nbodyType='\{bodyType}',\nengineType='\{engineType}',\nyearOfProduction=\{yearOfProduction},\nfirstRegistrationDate=\{firstRegistrationDate},\nprice=\{price}'\n";
+    }
 }
