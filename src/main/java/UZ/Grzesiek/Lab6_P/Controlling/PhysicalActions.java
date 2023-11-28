@@ -1,10 +1,10 @@
 package UZ.Grzesiek.Lab6_P.Controlling;
 
-import UZ.Grzesiek.Lab6_P.MSG;
-import UZ.Grzesiek.Lab6_P.PermissionValues;
-import UZ.Grzesiek.Lab6_P.StatusOfMachine;
-import UZ.Grzesiek.Lab6_P.WashingMachine;
-public class PhysicalActions implements PhysicalInterface{
+import UZ.Grzesiek.Lab6_P.Utils.MSG;
+import UZ.Grzesiek.Lab6_P.StatusOfMachine.StatusOfMachine;
+import UZ.Grzesiek.Lab6_P.WashingMachine.WashingMachine;
+
+public class PhysicalActions implements PhysicalInterface {
 
     protected final WashingMachine washingMachine;
 
@@ -14,8 +14,20 @@ public class PhysicalActions implements PhysicalInterface{
 
     @Override
     public StatusOfMachine pumpWater() {
-        return null;
+try {
+            MSG.print("Pumping water...");
+            Thread.sleep(1000);
+            MSG.print("Water pumped!");
+            return StatusOfMachine.OK;
+
+        } catch (Exception e) {
+            MSG.print("Pumping water failed!");
+            MSG.print(e.getMessage());
+            return StatusOfMachine.ERROR;
+        }
+
     }
+
 
     @Override
     public StatusOfMachine heatWater(int tempToAssign) {
@@ -27,7 +39,7 @@ public class PhysicalActions implements PhysicalInterface{
             return StatusOfMachine.ERROR;
         }
 
-        try{
+        try {
             MSG.print("Heating water...");
             Thread.sleep(1000);
 
@@ -47,29 +59,20 @@ public class PhysicalActions implements PhysicalInterface{
 
     @Override
     public StatusOfMachine balanceDrumContents() {
-        return null;
-    }
-
-    @Override
-    public StatusOfMachine checkFilter(){
-        try{
-            MSG.print("Checking filter...");
+        try {
+            MSG.print("Balancing drum contents...");
             Thread.sleep(1000);
-            WashingMachine.WaterFilterStatus waterFilterStatus =  washingMachine.getWaterFilterStatus();
-            if(waterFilterStatus == WashingMachine.WaterFilterStatus.OK) {
-                MSG.print("Filter is OK.");
-                return StatusOfMachine.OK;
-            }
+            MSG.print("Drum contents balanced!");
+            return StatusOfMachine.OK;
 
-        }catch (Exception e){
-            MSG.print("Checking filter failed!");
+        } catch (Exception e) {
+            MSG.print("Balancing drum contents failed!");
             MSG.print(e.getMessage());
             return StatusOfMachine.ERROR;
         }
-
-
-        return null;
     }
+
+
 
     public WashingMachine getWashingMachine() {
         return washingMachine;

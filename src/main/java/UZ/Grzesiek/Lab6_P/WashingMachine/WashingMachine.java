@@ -1,16 +1,32 @@
-package UZ.Grzesiek.Lab6_P;
+package UZ.Grzesiek.Lab6_P.WashingMachine;
+
+import java.security.SecureRandom;
 
 
 public class WashingMachine  {
+    private static WashingMachine instance = null;
 
-    public WashingMachine() {
-    }
+    private WashingMachine() {}
     WashingMachineModes activeMode = null;
     private int temperatureOfWater=0;
     private int spinningSpeed=0;
     private int detergentContainer=0;
-    private int clothesContainer=0;
+    private int weightOfClothesContainer =0;
+    private int levelOfWater=0;
     WaterFilterStatus waterFilterStatus=WaterFilterStatus.OK;
+    public double getWaterPressure() {
+        SecureRandom random = new SecureRandom();
+        return random.nextDouble(2);
+    }
+
+    public int getLevelOfWater() {
+        return levelOfWater;
+    }
+
+    public void setLevelOfWater(int levelOfWater) {
+        this.levelOfWater = levelOfWater;
+    }
+
     public enum WaterFilterStatus {
         OK,
         SERVICE_NEEDED;
@@ -48,12 +64,12 @@ public class WashingMachine  {
         this.detergentContainer = detergentContainer;
     }
 
-    public int getClothesContainer() {
-        return clothesContainer;
+    public int getWeightOfClothesContainer() {
+        return weightOfClothesContainer;
     }
 
-    public void setClothesContainer(int clothesContainer) {
-        this.clothesContainer = clothesContainer;
+    public void setWeightOfClothesContainer(int weightOfClothesContainer) {
+        this.weightOfClothesContainer = weightOfClothesContainer;
     }
 
     public WaterFilterStatus getWaterFilterStatus() {
@@ -64,8 +80,9 @@ public class WashingMachine  {
         this.waterFilterStatus = waterFilterStatus;
     }
 
+
     @Override
     public String toString() {
-        return STR."WashingMachine{mode=\{activeMode}, temperatureOfWater=\{temperatureOfWater}, spinningSpeed=\{spinningSpeed}, detergentContainer=\{detergentContainer}, clothesContainer=\{clothesContainer}, waterFilterStatus=\{waterFilterStatus}\{'}'}";
+        return STR."WashingMachine{mode=\{activeMode}, temperatureOfWater=\{temperatureOfWater}, spinningSpeed=\{spinningSpeed}, detergentContainer=\{detergentContainer}, clothesContainer=\{weightOfClothesContainer}, waterFilterStatus=\{waterFilterStatus}\{'}'}";
     }
 }

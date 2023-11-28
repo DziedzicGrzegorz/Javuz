@@ -1,6 +1,6 @@
 package UZ.Grzesiek.Lab6_P.Controlling;
 
-import UZ.Grzesiek.Lab6_P.StatusOfMachine;
+import UZ.Grzesiek.Lab6_P.StatusOfMachine.StatusOfMachine;
 
 public interface ControlInterface {
     StatusOfMachine powerOn();

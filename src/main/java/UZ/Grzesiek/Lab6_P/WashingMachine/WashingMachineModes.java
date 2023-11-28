@@ -1,4 +1,4 @@
-package UZ.Grzesiek.Lab6_P;
+package UZ.Grzesiek.Lab6_P.WashingMachine;
 
 
 /**

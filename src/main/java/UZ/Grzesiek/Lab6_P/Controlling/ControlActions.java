@@ -1,9 +1,9 @@
 package UZ.Grzesiek.Lab6_P.Controlling;
 
-import UZ.Grzesiek.Lab6_P.MSG;
-import UZ.Grzesiek.Lab6_P.StatusOfMachine;
-import UZ.Grzesiek.Lab6_P.WashingMachine;
-import UZ.Grzesiek.Lab6_P.WashingMachineModes;
+import UZ.Grzesiek.Lab6_P.Utils.MSG;
+import UZ.Grzesiek.Lab6_P.StatusOfMachine.StatusOfMachine;
+import UZ.Grzesiek.Lab6_P.WashingMachine.WashingMachine;
+import UZ.Grzesiek.Lab6_P.WashingMachine.WashingMachineModes;
 
 public class ControlActions extends PhysicalActions {
     public static void main(String[] args) {
@@ -20,7 +20,7 @@ public class ControlActions extends PhysicalActions {
     }
 
     ControlActions() {
-        super(new WashingMachine());
+        super(WashingMachine.getInstance());
     }
 
 
@@ -72,12 +72,26 @@ public class ControlActions extends PhysicalActions {
             washingMachine.setTemperatureOfWater(modeToStart.getWaterTemperature());
 
             washingMachine.setSpinningSpeed(modeToStart.getSpinningSpeed());
-            washingMachine.setClothesContainer(kgOfClothes);
+            washingMachine.setWeightOfClothesContainer(kgOfClothes);
 
 
 
         } catch (Exception e) {
             MSG.print("Starting washing failed!");
+            MSG.print(e.getMessage());
+            status = StatusOfMachine.ERROR;
+        }
+        return status;
+    }
+    public StatusOfMachine StopWashing() {
+        try {
+            MSG.print("Stopping washing...");
+            //@TODO implement stopping washing and sensors
+
+            status = StatusOfMachine.STOPPED;
+
+        } catch (Exception e) {
+            MSG.print("Stopping washing failed!");
             MSG.print(e.getMessage());
             status = StatusOfMachine.ERROR;
         }
