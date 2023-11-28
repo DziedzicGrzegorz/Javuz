@@ -7,5 +7,5 @@ public interface PhysicalInterface{
     StatusOfMachine pumpWater();
     StatusOfMachine heatWater(int tempToAssign);
     StatusOfMachine balanceDrumContents();
-    StatusOfMachine checkFilter();
+    StatusOfMachine checkFilter() throws InterruptedException;
 }

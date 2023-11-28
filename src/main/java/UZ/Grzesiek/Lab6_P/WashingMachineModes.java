@@ -22,7 +22,13 @@ package UZ.Grzesiek.Lab6_P;
  * - extraRinse: If true, an extra rinse cycle is added.
  * - spinSpeed: The spin speed (in RPM).
  */
-public class WashingMachineModes extends WashingModeSettings {
+public class WashingMachineModes{
+    protected int waterTemperature;
+    protected int preWashTime;
+    protected int mainWashTime;
+    protected boolean extraRinse;
+    protected int spinningSpeed;
+
     public static final WashingMachineModes WASHING_CLASSIC = new WashingMachineModes(90, 10, 30, true, 1200);
     public static final WashingMachineModes WASHING_DAILY = new WashingMachineModes(60, 5, 20, false, 800);
     public static final WashingMachineModes SPINNING = new WashingMachineModes(30, 3, 15, true, 600);
@@ -45,5 +51,45 @@ public class WashingMachineModes extends WashingModeSettings {
     @Override
     public String toString() {
         return STR."WashingMode => waterTemperature=\{waterTemperature}, preWashTime=\{preWashTime}, mainWashTime=\{mainWashTime}, extraRinse=\{extraRinse}, spinSpeed=\{spinningSpeed}";
+    }
+
+    public int getWaterTemperature() {
+        return waterTemperature;
+    }
+
+    public void setWaterTemperature(int waterTemperature) {
+        this.waterTemperature = waterTemperature;
+    }
+
+    public int getPreWashTime() {
+        return preWashTime;
+    }
+
+    public void setPreWashTime(int preWashTime) {
+        this.preWashTime = preWashTime;
+    }
+
+    public int getMainWashTime() {
+        return mainWashTime;
+    }
+
+    public void setMainWashTime(int mainWashTime) {
+        this.mainWashTime = mainWashTime;
+    }
+
+    public boolean isExtraRinse() {
+        return extraRinse;
+    }
+
+    public void setExtraRinse(boolean extraRinse) {
+        this.extraRinse = extraRinse;
+    }
+
+    public int getSpinningSpeed() {
+        return spinningSpeed;
+    }
+
+    public void setSpinningSpeed(int spinningSpeed) {
+        this.spinningSpeed = spinningSpeed;
     }
 }
