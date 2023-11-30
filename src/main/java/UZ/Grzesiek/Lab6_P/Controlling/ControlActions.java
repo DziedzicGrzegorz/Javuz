@@ -6,20 +6,20 @@ import UZ.Grzesiek.Lab6_P.WashingMachine.WashingMachine;
 import UZ.Grzesiek.Lab6_P.WashingMachine.WashingMachineModes;
 
 public class ControlActions extends PhysicalActions {
-    public static void main(String[] args) {
-        ControlActions controlActions = new ControlActions();
-        controlActions.powerOn();
-        controlActions.startWashing(WashingMachineModes.WASHING_CLASSIC,5);
-        controlActions.powerOff();
-    }
+//    public static void main(String[] args) {
+//        ControlActions controlActions = new ControlActions();
+//        controlActions.powerOn();
+//        controlActions.startWashing(WashingMachineModes.WASHING_CLASSIC, 5);
+//        controlActions.powerOff();
+//    }
 
     private StatusOfMachine status;
 
-    ControlActions(WashingMachine washingMachine) {
+    public ControlActions(WashingMachine washingMachine) {
         super(washingMachine);
     }
 
-    ControlActions() {
+    public ControlActions() {
         super(WashingMachine.getInstance());
     }
 
@@ -57,32 +57,42 @@ public class ControlActions extends PhysicalActions {
 
     public StatusOfMachine startWashing(WashingMachineModes modeToStart, int kgOfClothes) {
         try {
+            Sensors sensors = new Sensors(washingMachine);
+            StatusOfMachine pressureStatus = sensors.PressureOfWater();
+            StatusOfMachine filterStatus = sensors.checkFilter();
+
+            if (pressureStatus == StatusOfMachine.ERROR || filterStatus == StatusOfMachine.ERROR) {
+                MSG.print("Error in sensors. Cannot start washing.");
+                return StatusOfMachine.ERROR;
+            }
+            if (pressureStatus == StatusOfMachine.SERVICE_NEEDED || filterStatus == StatusOfMachine.SERVICE_NEEDED) {
+                MSG.print("Service needed. Cannot start washing.");
+                return StatusOfMachine.SERVICE_NEEDED;
+            }
+            StatusOfMachine balanceDrumStatus = balanceDrumContents();
+
+            StatusOfMachine pumpWaterStatus = pumpWater();
+            StatusOfMachine heatWaterStatus = heatWater(modeToStart.getWaterTemperature());
+
+            if (pumpWaterStatus != StatusOfMachine.OK || heatWaterStatus != StatusOfMachine.OK || balanceDrumStatus != StatusOfMachine.OK) {
+                MSG.print("Error in physical actions. Cannot start washing.");
+                return StatusOfMachine.ERROR;
+            }
+
             MSG.print("Starting washing...");
-            //@TODO implement starting washing and sensors
+            Thread.sleep(1000);
 
+            MSG.print("Washing ended");
 
-            status = StatusOfMachine.WORKING;
-            //@TODO here invoke method to start washing
-
-            washingMachine.setActiveMode(modeToStart);
-
-           if(heatWater(modeToStart.getWaterTemperature()) != StatusOfMachine.OK){
-               System.out.println(STR."Error while heating water to \{modeToStart.getWaterTemperature()} degrees Celsius.");
-           }
-            washingMachine.setTemperatureOfWater(modeToStart.getWaterTemperature());
-
-            washingMachine.setSpinningSpeed(modeToStart.getSpinningSpeed());
-            washingMachine.setWeightOfClothesContainer(kgOfClothes);
-
-
+            return StatusOfMachine.OK;
 
         } catch (Exception e) {
             MSG.print("Starting washing failed!");
             MSG.print(e.getMessage());
-            status = StatusOfMachine.ERROR;
+            return StatusOfMachine.ERROR;
         }
-        return status;
     }
+
     public StatusOfMachine StopWashing() {
         try {
             MSG.print("Stopping washing...");
@@ -108,6 +118,21 @@ public class ControlActions extends PhysicalActions {
 
 
     public StatusOfMachine pauseWashing() {
-        return null;
+        try {
+            MSG.print("Pausing washing...");
+            //@TODO implement pausing washing and sensors
+
+            status = StatusOfMachine.STOPPED;
+
+        } catch (Exception e) {
+            MSG.print("Pausing washing failed!");
+            MSG.print(e.getMessage());
+            status = StatusOfMachine.ERROR;
+        }
+        return status;
+
+    }
+    public static WashingMachine reset(){
+        return WashingMachine.hardReset();
     }
 }

@@ -20,6 +20,10 @@ public class WashingMachine  {
     private int weightOfClothesContainer =0;
     private int levelOfWater=0;
     WaterFilterStatus waterFilterStatus=WaterFilterStatus.OK;
+    public static WashingMachine hardReset(){
+        instance = new WashingMachine();
+        return instance;
+    }
     public double getWaterPressure() {
         SecureRandom random = new SecureRandom();
         return random.nextDouble(2);
