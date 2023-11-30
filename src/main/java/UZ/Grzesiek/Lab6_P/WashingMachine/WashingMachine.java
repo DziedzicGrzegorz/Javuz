@@ -7,6 +7,12 @@ public class WashingMachine  {
     private static WashingMachine instance = null;
 
     private WashingMachine() {}
+    public static WashingMachine getInstance() {
+        if (instance == null) {
+            instance = new WashingMachine();
+        }
+        return instance;
+    }
     WashingMachineModes activeMode = null;
     private int temperatureOfWater=0;
     private int spinningSpeed=0;
@@ -18,6 +24,7 @@ public class WashingMachine  {
         SecureRandom random = new SecureRandom();
         return random.nextDouble(2);
     }
+
 
     public int getLevelOfWater() {
         return levelOfWater;
