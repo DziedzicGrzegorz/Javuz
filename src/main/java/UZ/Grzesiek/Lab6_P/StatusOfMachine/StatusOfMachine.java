@@ -1,5 +1,8 @@
 package UZ.Grzesiek.Lab6_P.StatusOfMachine;
 
+import lombok.Getter;
+
+@Getter
 public enum StatusOfMachine {    OK(200),
     OFF(1),
     STOPPED(2),
@@ -13,10 +16,4 @@ public enum StatusOfMachine {    OK(200),
     StatusOfMachine(int statusCode) {
         this.statusCode = statusCode;
     }
-    public int getStatusCode() {
-        return statusCode;
-    }
-
-
-
 }

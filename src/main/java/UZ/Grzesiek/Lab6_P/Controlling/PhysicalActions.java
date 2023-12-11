@@ -4,7 +4,9 @@ package UZ.Grzesiek.Lab6_P.Controlling;
 import UZ.Grzesiek.Lab6_P.StatusOfMachine.StatusOfMachine;
 import UZ.Grzesiek.Lab6_P.Utils.MSG;
 import UZ.Grzesiek.Lab6_P.WashingMachine.WashingMachine;
+import lombok.Getter;
 
+@Getter
 public class PhysicalActions implements PhysicalInterface{
 
     protected final WashingMachine washingMachine;
@@ -92,7 +94,4 @@ public class PhysicalActions implements PhysicalInterface{
         return null;
     }
 
-    public WashingMachine getWashingMachine() {
-        return washingMachine;
-    }
 }

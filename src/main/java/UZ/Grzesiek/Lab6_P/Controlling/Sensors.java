@@ -5,11 +5,13 @@ import UZ.Grzesiek.Lab6_P.StatusOfMachine.StatusOfMachine;
 import UZ.Grzesiek.Lab6_P.WashingMachine.WashingMachine;
 
 public class Sensors {
-    private WashingMachine washingMachine;
+    private final WashingMachine washingMachine;
+
     Sensors(WashingMachine washingMachine) {
         this.washingMachine = washingMachine;
     }
-    public StatusOfMachine PressureOfWater(){
+
+    public StatusOfMachine PressureOfWater() {
         try {
             MSG.print("Checking pressure of water...");
             Thread.sleep(1000);
@@ -26,6 +28,7 @@ public class Sensors {
         }
 
     }
+
     public StatusOfMachine checkFilter() {
         try {
             MSG.print("Checking filter...");
@@ -44,6 +47,4 @@ public class Sensors {
             return StatusOfMachine.ERROR;
         }
     }
-
-
 }

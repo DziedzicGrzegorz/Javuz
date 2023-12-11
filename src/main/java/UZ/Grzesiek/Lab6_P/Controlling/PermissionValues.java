@@ -1,6 +1,8 @@
 package UZ.Grzesiek.Lab6_P.Controlling;
 
+import lombok.Getter;
 
+@Getter
 public enum PermissionValues {
 
     TEMP_OF_WATER(0, 100),

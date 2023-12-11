@@ -4,16 +4,23 @@ import UZ.Grzesiek.Lab6_P.Utils.MSG;
 import UZ.Grzesiek.Lab6_P.StatusOfMachine.StatusOfMachine;
 import UZ.Grzesiek.Lab6_P.WashingMachine.WashingMachine;
 import UZ.Grzesiek.Lab6_P.WashingMachine.WashingMachineModes;
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 public class ControlActions extends PhysicalActions {
-//    public static void main(String[] args) {
-//        ControlActions controlActions = new ControlActions();
-//        controlActions.powerOn();
-//        controlActions.startWashing(WashingMachineModes.WASHING_CLASSIC, 5);
-//        controlActions.powerOff();
-//    }
+    public static void main(String[] args) {
+        ControlActions controlActions = new ControlActions();
+        controlActions.powerOn();
+        controlActions.startWashing(WashingMachineModes.WASHING_CLASSIC, 5);
+        //i want to
+        controlActions.powerOff();
+    }
 
     private StatusOfMachine status;
+
 
     public ControlActions(WashingMachine washingMachine) {
         super(washingMachine);
@@ -108,14 +115,6 @@ public class ControlActions extends PhysicalActions {
         return status;
     }
 
-    public StatusOfMachine getStatus() {
-        return status;
-    }
-
-    public void setStatus(StatusOfMachine status) {
-        this.status = status;
-    }
-
 
     public StatusOfMachine pauseWashing() {
         try {
@@ -132,7 +131,8 @@ public class ControlActions extends PhysicalActions {
         return status;
 
     }
-    public static WashingMachine reset(){
+
+    public static WashingMachine reset() {
         return WashingMachine.hardReset();
     }
 }

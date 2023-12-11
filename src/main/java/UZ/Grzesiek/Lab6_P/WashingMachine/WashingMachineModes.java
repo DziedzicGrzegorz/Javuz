@@ -1,27 +1,11 @@
 package UZ.Grzesiek.Lab6_P.WashingMachine;
 
 
-/**
- * Defines different modes of operation for a washing machine.
- * <p>
- * Includes five predefined modes:
- * - WASHING_CLASSIC
- * - WASHING_DAILY
- * - SPINNING
- * - DRYING
- * - RINSING
- * <p>
- * You can also create a custom mode using the `customMode` method, for example:
- * <p>
- * MachineModes customMode = MachineModes.customMode(30, 3, 15, true, 600);
- * <p>
- * Each mode includes configurations for:
- * - waterTemperature: The temperature of the water (in degrees Celsius).
- * - preWashTime: The pre-wash time (in minutes).
- * - mainWashTime: The main wash time (in minutes).
- * - extraRinse: If true, an extra rinse cycle is added.
- * - spinSpeed: The spin speed (in RPM).
- */
+import lombok.Data;
+
+
+
+@Data
 public class WashingMachineModes{
     protected int waterTemperature;
     protected int preWashTime;
@@ -53,43 +37,4 @@ public class WashingMachineModes{
         return STR."WashingMode => waterTemperature=\{waterTemperature}, preWashTime=\{preWashTime}, mainWashTime=\{mainWashTime}, extraRinse=\{extraRinse}, spinSpeed=\{spinningSpeed}";
     }
 
-    public int getWaterTemperature() {
-        return waterTemperature;
-    }
-
-    public void setWaterTemperature(int waterTemperature) {
-        this.waterTemperature = waterTemperature;
-    }
-
-    public int getPreWashTime() {
-        return preWashTime;
-    }
-
-    public void setPreWashTime(int preWashTime) {
-        this.preWashTime = preWashTime;
-    }
-
-    public int getMainWashTime() {
-        return mainWashTime;
-    }
-
-    public void setMainWashTime(int mainWashTime) {
-        this.mainWashTime = mainWashTime;
-    }
-
-    public boolean isExtraRinse() {
-        return extraRinse;
-    }
-
-    public void setExtraRinse(boolean extraRinse) {
-        this.extraRinse = extraRinse;
-    }
-
-    public int getSpinningSpeed() {
-        return spinningSpeed;
-    }
-
-    public void setSpinningSpeed(int spinningSpeed) {
-        this.spinningSpeed = spinningSpeed;
-    }
 }
