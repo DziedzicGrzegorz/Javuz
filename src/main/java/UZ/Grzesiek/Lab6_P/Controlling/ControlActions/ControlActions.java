@@ -38,7 +38,6 @@ public class ControlActions extends PhysicalActions implements ControlInterface 
             washingMachine.setStatus(StatusOfMachine.ERROR);
         }
     }
-
     public void powerOff() {
         try {
             MSG.print("Powering off...");
@@ -51,7 +50,6 @@ public class ControlActions extends PhysicalActions implements ControlInterface 
             washingMachine.setStatus(StatusOfMachine.ERROR);
         }
     }
-
     public void startWashing(WashingMachineModes modeToStart, int kgOfClothes) {
         try {
             Sensors sensors = new Sensors();
@@ -69,7 +67,6 @@ public class ControlActions extends PhysicalActions implements ControlInterface 
             MSG.print(e.getMessage());
         }
     }
-
     public void stopWashing() {
         try {
             MSG.print("Stopping washing...");
@@ -82,7 +79,6 @@ public class ControlActions extends PhysicalActions implements ControlInterface 
             washingMachine.setStatus(StatusOfMachine.ERROR);
         }
     }
-
     public static WashingMachine reset() {
         return WashingMachine.hardReset();
     }

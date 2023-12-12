@@ -28,7 +28,6 @@ public class Sensors implements SensorsInterface {
             checkComponentStatus(component);
         }
     }
-
     @Override
     public void checkComponentStatus(CheckAbleComponent component) {
         ComponentStatus status = component.getStatus();
