@@ -7,8 +7,8 @@ public enum PermissionValuesForModes {
 
     TEMP_OF_WATER(0, 100),
     SPINNING_SPEED(0, 1200),
-    PRE_WASH_TIME(0, 30),
-    MAIN_WASH_TIME(15, 180);
+    PRE_WASH_TIME(0, 15),
+    MAIN_WASH_TIME(6, 180);
 
     private final int minValue;
     private final int maxValue;

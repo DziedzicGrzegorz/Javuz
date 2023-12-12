@@ -1,4 +1,4 @@
-package UZ.Grzesiek.Lab6_P.Controlling;
+package UZ.Grzesiek.Lab6_P.WashingMachine;
 
 import lombok.Getter;
 
