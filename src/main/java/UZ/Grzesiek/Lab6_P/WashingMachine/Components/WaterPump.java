@@ -4,13 +4,17 @@ package UZ.Grzesiek.Lab6_P.WashingMachine.Components;
 import lombok.Data;
 
 @Data
-public class WaterPump {
+public class WaterPump implements CheckableComponent {
     private ComponentStatus status;
-    private int levelOfWater;
+    private int waterPressure;
 
     public WaterPump() {
-        this.status = ComponentStatus.OK;
-        this.levelOfWater = 0;
+        setDefaultValue();
     }
 
+    @Override
+    public void setDefaultValue() {
+        this.status = ComponentStatus.OK;
+        this.waterPressure = 0;
+    }
 }

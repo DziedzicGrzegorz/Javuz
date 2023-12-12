@@ -1,15 +1,13 @@
 package UZ.Grzesiek.Lab6_P.WashingMachine;
 
 import UZ.Grzesiek.Lab6_P.StatusOfMachine.StatusOfMachine;
-import UZ.Grzesiek.Lab6_P.WashingMachine.Components.DetergentContainer;
-import UZ.Grzesiek.Lab6_P.WashingMachine.Components.Drum;
-import UZ.Grzesiek.Lab6_P.WashingMachine.Components.WaterFilter;
-import UZ.Grzesiek.Lab6_P.WashingMachine.Components.WaterHeater;
+import UZ.Grzesiek.Lab6_P.WashingMachine.Components.*;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-
+import java.util.Arrays;
+import java.util.List;
 
 
 /**
@@ -60,17 +58,18 @@ public class WashingMachine  {
     WashingMachineModes activeMode = null;
     private StatusOfMachine status = StatusOfMachine.OFF;
 
-    final public DetergentContainer detergentContainer = new DetergentContainer();
-    final public Drum drum = new Drum();
-    final public WaterFilter waterFilter = new WaterFilter();
-    final public WaterHeater waterHeater = new WaterHeater();
+    private final List<CheckableComponent> checkableComponents = Arrays.asList(
+            new DetergentContainer(),
+            new Drum(),
+            new WaterFilter(),
+            new WaterHeater(),
+            new WaterPump()
+    );
 
 
     private int waterTemperature;
     private int levelOfWater;
     private int spinningSpeed;
-
-
 
     private WashingMachine() {}
     public static WashingMachine getInstance() {
@@ -83,5 +82,13 @@ public class WashingMachine  {
     public static WashingMachine hardReset(){
         instance = null;
         return WashingMachine.getInstance();
+    }
+    public <T> T getComponent(Class<T> componentType) {
+        for (CheckableComponent component : checkableComponents) {
+            if (componentType.isInstance(component)) {
+                return componentType.cast(component);
+            }
+        }
+        return null;
     }
 }
