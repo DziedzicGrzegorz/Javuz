@@ -1,10 +1,11 @@
-package UZ.Grzesiek.Lab6_P.Controlling;
+package UZ.Grzesiek.Lab6_P.Controlling.ControlActions;
 
+import UZ.Grzesiek.Lab6_P.Controlling.PhysicalActions.PhysicalActions;
+import UZ.Grzesiek.Lab6_P.Controlling.Sensors.Sensors;
 import UZ.Grzesiek.Lab6_P.Utils.MSG;
 import UZ.Grzesiek.Lab6_P.StatusOfMachine.StatusOfMachine;
 import UZ.Grzesiek.Lab6_P.WashingMachine.WashingMachine;
 import UZ.Grzesiek.Lab6_P.WashingMachine.WashingMachineModes;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 /**
@@ -20,13 +21,14 @@ import lombok.Setter;
 public class ControlActions extends PhysicalActions implements ControlInterface {
 
     public ControlActions() {
-        super(WashingMachine.getInstance());
+        super();
     }
 
 
     public StatusOfMachine powerOn() {
         try {
             MSG.print("Powering on...");
+            washingMachine.setStatus(StatusOfMachine.OK);
             System.out.println(getWashingMachine());
 
             washingMachine.setStatus(StatusOfMachine.OK);
@@ -42,7 +44,6 @@ public class ControlActions extends PhysicalActions implements ControlInterface 
     public StatusOfMachine powerOff() {
         try {
             MSG.print("Powering off...");
-            //@TODO implement powering off and sensors
 
             washingMachine.setStatus(StatusOfMachine.OFF);
 
@@ -56,20 +57,17 @@ public class ControlActions extends PhysicalActions implements ControlInterface 
 
     public StatusOfMachine startWashing(WashingMachineModes modeToStart, int kgOfClothes) {
         try {
-            Sensors sensors = new Sensors(washingMachine);
-            StatusOfMachine pressureStatus = sensors.PressureOfWater();
-            WashingMachine.WaterFilterStatus filterStatus = sensors.checkFilter();
-
-            StatusOfMachine balanceDrumStatus = balanceDrumContents();
-
-            StatusOfMachine pumpWaterStatus = pumpWater();
-            StatusOfMachine heatWaterStatus = heatWater(modeToStart.getWaterTemperature());
+            Sensors sensors = new Sensors();
+            sensors.checkAllComponents();
 
 
             MSG.print("Starting washing...");
             Thread.sleep(1000);
+            //@Todo connect washingMachine states with washingMachineModes
+
 
             MSG.print("Washing ended");
+            washingMachine.setStatus(StatusOfMachine.OK);
 
             return StatusOfMachine.OK;
 
@@ -93,9 +91,6 @@ public class ControlActions extends PhysicalActions implements ControlInterface 
         }
         return washingMachine.getStatus();
     }
-
-
-
     public static WashingMachine reset() {
         return WashingMachine.hardReset();
     }

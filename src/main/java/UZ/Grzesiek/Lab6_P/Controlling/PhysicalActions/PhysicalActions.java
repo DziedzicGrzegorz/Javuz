@@ -1,13 +1,17 @@
-package UZ.Grzesiek.Lab6_P.Controlling;
+package UZ.Grzesiek.Lab6_P.Controlling.PhysicalActions;
 
 
+import UZ.Grzesiek.Lab6_P.Controlling.PermissionValues;
 import UZ.Grzesiek.Lab6_P.StatusOfMachine.StatusOfMachine;
 import UZ.Grzesiek.Lab6_P.Utils.MSG;
+import UZ.Grzesiek.Lab6_P.WashingMachine.Components.CheckableComponent;
+import UZ.Grzesiek.Lab6_P.WashingMachine.Components.DetergentContainer;
+import UZ.Grzesiek.Lab6_P.WashingMachine.Components.Drum;
 import UZ.Grzesiek.Lab6_P.WashingMachine.WashingMachine;
 import lombok.Getter;
 
 @Getter
-public class PhysicalActions implements PhysicalInterface{
+public class PhysicalActions implements PhysicalInterface {
 
     protected final WashingMachine washingMachine;
 
@@ -60,7 +64,7 @@ public class PhysicalActions implements PhysicalInterface{
             return StatusOfMachine.ERROR;
         }
 
-        try{
+        try {
             MSG.print("Heating water...");
             Thread.sleep(1000);
 
@@ -83,7 +87,7 @@ public class PhysicalActions implements PhysicalInterface{
         try {
             Thread.sleep(1000);
             MSG.print("Drum contents balanced.");
-            washingMachine.drum.Balancing();
+            washingMachine.getComponent(Drum.class).Balancing();
             return StatusOfMachine.OK;
         } catch (Exception e) {
             MSG.print("Balancing drum contents failed!");
@@ -94,7 +98,7 @@ public class PhysicalActions implements PhysicalInterface{
 
     @Override
     public StatusOfMachine addFabricSoftener(int amountOfSoftener) {
-        if(PermissionValues.DETERGENT_CONTAINER_FABRIC_SOFTENER.isValueInRange(amountOfSoftener)){
+        if (PermissionValues.DETERGENT_CONTAINER_FABRIC_SOFTENER.isValueInRange(amountOfSoftener)) {
             MSG.print("");
         }
 
@@ -102,7 +106,7 @@ public class PhysicalActions implements PhysicalInterface{
         try {
             Thread.sleep(1000);
             MSG.print("Fabric softener added.");
-            washingMachine.detergentContainer.setFabricSoftenerLevel(amountOfSoftener);
+            washingMachine.getComponent(DetergentContainer.class).setFabricSoftenerLevel(amountOfSoftener);
 
             return StatusOfMachine.OK;
         } catch (Exception e) {
@@ -114,7 +118,7 @@ public class PhysicalActions implements PhysicalInterface{
 
     @Override
     public StatusOfMachine addLaundryDetergent(int amountOfDetergent) {
-        if(PermissionValues.DETERGENT_CONTAINER_LAUNDRY.isValueInRange(amountOfDetergent)){
+        if (PermissionValues.DETERGENT_CONTAINER_LAUNDRY.isValueInRange(amountOfDetergent)) {
             MSG.print(STR."\{amountOfDetergent} is out of allowed Range");
         }
 
@@ -122,7 +126,7 @@ public class PhysicalActions implements PhysicalInterface{
         try {
             Thread.sleep(1000);
             MSG.print("Laundry added.");
-            washingMachine.detergentContainer.setLaundryDetergentLevel(amountOfDetergent);
+            washingMachine.getComponent(DetergentContainer.class).setLaundryDetergentLevel(amountOfDetergent);
 
             return StatusOfMachine.OK;
         } catch (Exception e) {
@@ -130,5 +134,10 @@ public class PhysicalActions implements PhysicalInterface{
             MSG.print(e.getMessage());
             return StatusOfMachine.ERROR;
         }
+    }
+
+    public StatusOfMachine AfterWashingResetValues() {
+        washingMachine.getCheckableComponents().forEach(CheckableComponent::setDefaultValue);
+        return StatusOfMachine.OK;
     }
 }

@@ -1,4 +1,4 @@
-package UZ.Grzesiek.Lab6_P.Controlling;
+package UZ.Grzesiek.Lab6_P.Controlling.PhysicalActions;
 
 import UZ.Grzesiek.Lab6_P.StatusOfMachine.StatusOfMachine;
 

@@ -7,7 +7,7 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class WashingMachineModes{
+public class WashingMachineModes {
     protected int waterTemperature;
     protected int preWashTime;
     protected int mainWashTime;
@@ -21,8 +21,21 @@ public class WashingMachineModes{
     public static final WashingMachineModes RINSING = new WashingMachineModes(30, 3, 15, true, 600);
 
 
-
     static WashingMachineModes customMode(int waterTemperature, int preWashTime, int mainWashTime, boolean extraRinse, int spinSpeed) {
+        validateModeSettings(waterTemperature, preWashTime, mainWashTime, spinSpeed);
         return new WashingMachineModes(waterTemperature, preWashTime, mainWashTime, extraRinse, spinSpeed);
+    }
+
+    private static void validateModeSettings(int waterTemperature, int preWashTime, int mainWashTime, int spinSpeed) {
+        validateSetting(PermissionValuesForModes.TEMP_OF_WATER, waterTemperature, "Water temperature");
+        validateSetting(PermissionValuesForModes.SPINNING_SPEED, spinSpeed, "Spinning speed");
+        validateSetting(PermissionValuesForModes.PRE_WASH_TIME, preWashTime, "Pre wash time");
+        validateSetting(PermissionValuesForModes.MAIN_WASH_TIME, mainWashTime, "Main wash time");
+    }
+
+    private static void validateSetting(PermissionValuesForModes permissionValue, int actualValue, String settingName) {
+        if (!permissionValue.isValueInRange(actualValue)) {
+            throw new IllegalArgumentException(STR."\{settingName} is out of the acceptable range!");
+        }
     }
 }

@@ -11,10 +11,9 @@ import java.util.function.Predicate;
 public class ErrorHandler {
     public static void main(String[] args) {
         ErrorHandler guard = new ErrorHandler();
-
-
     }
 
+    @SafeVarargs
     private <T> T[] createArray(T... elements) {
         return elements;
     }

@@ -1,4 +1,4 @@
-package UZ.Grzesiek.Lab6_P.Controlling;
+package UZ.Grzesiek.Lab6_P.Controlling.ControlActions;
 
 import UZ.Grzesiek.Lab6_P.StatusOfMachine.StatusOfMachine;
 import UZ.Grzesiek.Lab6_P.WashingMachine.WashingMachineModes;
