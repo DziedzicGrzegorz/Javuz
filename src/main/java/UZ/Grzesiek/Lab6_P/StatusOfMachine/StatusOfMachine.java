@@ -3,7 +3,8 @@ package UZ.Grzesiek.Lab6_P.StatusOfMachine;
 import lombok.Getter;
 
 @Getter
-public enum StatusOfMachine {    OK(200),
+public enum StatusOfMachine {
+    OK(200),
     OFF(1),
     STOPPED(2),
     ERROR(500),

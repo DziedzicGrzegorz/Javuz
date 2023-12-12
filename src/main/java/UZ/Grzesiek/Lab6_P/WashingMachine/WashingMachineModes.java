@@ -1,11 +1,12 @@
 package UZ.Grzesiek.Lab6_P.WashingMachine;
 
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 
-
 @Data
+@AllArgsConstructor
 public class WashingMachineModes{
     protected int waterTemperature;
     protected int preWashTime;
@@ -20,21 +21,8 @@ public class WashingMachineModes{
     public static final WashingMachineModes RINSING = new WashingMachineModes(30, 3, 15, true, 600);
 
 
-    private WashingMachineModes(int waterTemperature, int preWashTime, int mainWashTime, boolean extraRinse, int spinSpeed) {
-        this.waterTemperature = waterTemperature;
-        this.preWashTime = preWashTime;
-        this.mainWashTime = mainWashTime;
-        this.extraRinse = extraRinse;
-        this.spinningSpeed = spinSpeed;
-    }
 
     static WashingMachineModes customMode(int waterTemperature, int preWashTime, int mainWashTime, boolean extraRinse, int spinSpeed) {
         return new WashingMachineModes(waterTemperature, preWashTime, mainWashTime, extraRinse, spinSpeed);
     }
-
-    @Override
-    public String toString() {
-        return STR."WashingMode => waterTemperature=\{waterTemperature}, preWashTime=\{preWashTime}, mainWashTime=\{mainWashTime}, extraRinse=\{extraRinse}, spinSpeed=\{spinningSpeed}";
-    }
-
 }

@@ -12,33 +12,51 @@ public class PhysicalActions implements PhysicalInterface{
     protected final WashingMachine washingMachine;
 
 
-    public PhysicalActions(WashingMachine washingMachine) {
-        this.washingMachine = washingMachine;
+    public PhysicalActions() {
+        this.washingMachine = WashingMachine.getInstance();
     }
 
     @Override
-    public StatusOfMachine pumpWater() {
+    public StatusOfMachine pumpInWater(int levelOfWater) {
+        if (PermissionValues.WATER_ON_DRUM.isValueInRange(levelOfWater)) {
+            MSG.print(STR."\{levelOfWater} is out of allowed Range");
+            return StatusOfMachine.ERROR;
+        }
         try {
             MSG.print("Pumping water...");
             Thread.sleep(1000);
-            washingMachine.setLevelOfWater(0);
-            MSG.print("Water pumped out.");
+
+            washingMachine.setLevelOfWater(levelOfWater);
+
             return StatusOfMachine.OK;
         } catch (Exception e) {
-            MSG.print("Pumping water failed!");
+            MSG.print("Pumping water in failed!");
             MSG.print(e.getMessage());
             return StatusOfMachine.ERROR;
         }
+    }
 
+    @Override
+    public StatusOfMachine pumpOutWater() {
+
+        try {
+            MSG.print("Pumping water out...");
+            Thread.sleep(1000);
+
+            washingMachine.setLevelOfWater(0);
+
+            return StatusOfMachine.OK;
+        } catch (Exception e) {
+            MSG.print("Pumping water out  failed!");
+            MSG.print(e.getMessage());
+            return StatusOfMachine.ERROR;
+        }
     }
 
     @Override
     public StatusOfMachine heatWater(int tempToAssign) {
-        int MAX_TEMP = PermissionValues.TEMP_OF_WATER.getMaxValue();
-        int MIN_TEMP = PermissionValues.TEMP_OF_WATER.getMinValue();
-
-        if (tempToAssign < MIN_TEMP && tempToAssign > MAX_TEMP) {
-            MSG.print("Temperature is out of range!");
+        if (PermissionValues.TEMP_OF_WATER.isValueInRange(tempToAssign)) {
+            MSG.print(STR."\{tempToAssign} is out of allowed Range");
             return StatusOfMachine.ERROR;
         }
 
@@ -46,10 +64,9 @@ public class PhysicalActions implements PhysicalInterface{
             MSG.print("Heating water...");
             Thread.sleep(1000);
 
-//            washingMachine.setWaterTemperature(tempToAssign);
             MSG.print(STR."Water heated to \{tempToAssign} degrees Celsius.");
 
-            washingMachine.setTemperatureOfWater(tempToAssign);
+            washingMachine.setWaterTemperature(tempToAssign);
 
             return StatusOfMachine.OK;
 
@@ -66,6 +83,7 @@ public class PhysicalActions implements PhysicalInterface{
         try {
             Thread.sleep(1000);
             MSG.print("Drum contents balanced.");
+            washingMachine.drum.Balancing();
             return StatusOfMachine.OK;
         } catch (Exception e) {
             MSG.print("Balancing drum contents failed!");
@@ -74,24 +92,43 @@ public class PhysicalActions implements PhysicalInterface{
         }
     }
 
-    public StatusOfMachine checkFilter(){
-        try{
-            MSG.print("Checking filter...");
-            Thread.sleep(1000);
-            WashingMachine.WaterFilterStatus waterFilterStatus =  washingMachine.getWaterFilterStatus();
-            if(waterFilterStatus == WashingMachine.WaterFilterStatus.OK) {
-                MSG.print("Filter is OK.");
-                return StatusOfMachine.OK;
-            }
+    @Override
+    public StatusOfMachine addFabricSoftener(int amountOfSoftener) {
+        if(PermissionValues.DETERGENT_CONTAINER_FABRIC_SOFTENER.isValueInRange(amountOfSoftener)){
+            MSG.print("");
+        }
 
-        }catch (Exception e){
-            MSG.print("Checking filter failed!");
+        MSG.print("Adding fabric softener...");
+        try {
+            Thread.sleep(1000);
+            MSG.print("Fabric softener added.");
+            washingMachine.detergentContainer.setFabricSoftenerLevel(amountOfSoftener);
+
+            return StatusOfMachine.OK;
+        } catch (Exception e) {
+            MSG.print("Adding fabric softener failed!");
             MSG.print(e.getMessage());
             return StatusOfMachine.ERROR;
         }
-
-
-        return null;
     }
 
+    @Override
+    public StatusOfMachine addLaundryDetergent(int amountOfDetergent) {
+        if(PermissionValues.DETERGENT_CONTAINER_LAUNDRY.isValueInRange(amountOfDetergent)){
+            MSG.print(STR."\{amountOfDetergent} is out of allowed Range");
+        }
+
+        MSG.print("Adding Laundry softener...");
+        try {
+            Thread.sleep(1000);
+            MSG.print("Laundry added.");
+            washingMachine.detergentContainer.setLaundryDetergentLevel(amountOfDetergent);
+
+            return StatusOfMachine.OK;
+        } catch (Exception e) {
+            MSG.print("Adding Laundry failed!");
+            MSG.print(e.getMessage());
+            return StatusOfMachine.ERROR;
+        }
+    }
 }

@@ -1,6 +1,15 @@
 package UZ.Grzesiek.Lab6_P.WashingMachine;
 
-import java.security.SecureRandom;
+import UZ.Grzesiek.Lab6_P.StatusOfMachine.StatusOfMachine;
+import UZ.Grzesiek.Lab6_P.WashingMachine.Components.DetergentContainer;
+import UZ.Grzesiek.Lab6_P.WashingMachine.Components.Drum;
+import UZ.Grzesiek.Lab6_P.WashingMachine.Components.WaterFilter;
+import UZ.Grzesiek.Lab6_P.WashingMachine.Components.WaterHeater;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
+
 
 
 /**
@@ -21,7 +30,6 @@ import java.security.SecureRandom;
  * </p>
  *
  * <p>
- *     The class also includes the nested enum {@link WaterFilterStatus} that represents the status of the water filter.
  *     The class also relies on the nested class {@link WashingMachineModes} for representing the different modes of operation.
  * </p>
  *
@@ -42,10 +50,27 @@ import java.security.SecureRandom;
  * </pre>
  *
  * @see WashingMachineModes
- * @see WaterFilterStatus
  */
+@Setter
+@Getter
+@ToString
 public class WashingMachine  {
     private static WashingMachine instance = null;
+
+    WashingMachineModes activeMode = null;
+    private StatusOfMachine status = StatusOfMachine.OFF;
+
+    final public DetergentContainer detergentContainer = new DetergentContainer();
+    final public Drum drum = new Drum();
+    final public WaterFilter waterFilter = new WaterFilter();
+    final public WaterHeater waterHeater = new WaterHeater();
+
+
+    private int waterTemperature;
+    private int levelOfWater;
+    private int spinningSpeed;
+
+
 
     private WashingMachine() {}
     public static WashingMachine getInstance() {
@@ -54,87 +79,9 @@ public class WashingMachine  {
         }
         return instance;
     }
-    WashingMachineModes activeMode = null;
-    private int temperatureOfWater=0;
-    private int spinningSpeed=0;
-    private int detergentContainer=0;
-    private int weightOfClothesContainer =0;
-    private int levelOfWater=0;
-    WaterFilterStatus waterFilterStatus=WaterFilterStatus.OK;
+
     public static WashingMachine hardReset(){
-        instance = new WashingMachine();
-        return instance;
-    }
-    public double getWaterPressure() {
-        SecureRandom random = new SecureRandom();
-        return random.nextDouble(2);
-    }
-
-
-    public int getLevelOfWater() {
-        return levelOfWater;
-    }
-
-    public void setLevelOfWater(int levelOfWater) {
-        this.levelOfWater = levelOfWater;
-    }
-
-    public enum WaterFilterStatus {
-        OK,
-        SERVICE_NEEDED;
-    }
-
-    public WashingMachineModes getActiveMode() {
-        return activeMode;
-    }
-
-    public void setActiveMode(WashingMachineModes activeMode) {
-        this.activeMode = activeMode;
-    }
-
-    public int getTemperatureOfWater() {
-        return temperatureOfWater;
-    }
-
-    public void setTemperatureOfWater(int temperatureOfWater) {
-        this.temperatureOfWater = temperatureOfWater;
-    }
-
-    public int getSpinningSpeed() {
-        return spinningSpeed;
-    }
-
-    public void setSpinningSpeed(int spinningSpeed) {
-        this.spinningSpeed = spinningSpeed;
-    }
-
-    public int getDetergentContainer() {
-        return detergentContainer;
-    }
-
-    public void setDetergentContainer(int detergentContainer) {
-        this.detergentContainer = detergentContainer;
-    }
-
-    public int getWeightOfClothesContainer() {
-        return weightOfClothesContainer;
-    }
-
-    public void setWeightOfClothesContainer(int weightOfClothesContainer) {
-        this.weightOfClothesContainer = weightOfClothesContainer;
-    }
-
-    public WaterFilterStatus getWaterFilterStatus() {
-        return waterFilterStatus;
-    }
-
-    public void setWaterFilterStatus(WaterFilterStatus waterFilterStatus) {
-        this.waterFilterStatus = waterFilterStatus;
-    }
-
-
-    @Override
-    public String toString() {
-        return STR."WashingMachine{mode=\{activeMode}, temperatureOfWater=\{temperatureOfWater}, spinningSpeed=\{spinningSpeed}, detergentContainer=\{detergentContainer}, clothesContainer=\{weightOfClothesContainer}, waterFilterStatus=\{waterFilterStatus}\{'}'}";
+        instance = null;
+        return WashingMachine.getInstance();
     }
 }
