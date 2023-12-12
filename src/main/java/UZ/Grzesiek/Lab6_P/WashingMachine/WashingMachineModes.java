@@ -1,9 +1,7 @@
 package UZ.Grzesiek.Lab6_P.WashingMachine;
 
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
-
 
 @Data
 @AllArgsConstructor

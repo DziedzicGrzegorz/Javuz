@@ -1,15 +1,12 @@
 package UZ.Grzesiek.Lab6_P.WashingMachine.Components;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.Data;
 
-@Getter
-@Setter
-@ToString
-public class WaterHeater implements CheckableComponent {
+@Data
+public class WaterHeater implements CheckAbleComponent {
     private ComponentStatus status;
     private int levelOfDemotion;
+
     public WaterHeater() {
         setDefaultValue();
     }

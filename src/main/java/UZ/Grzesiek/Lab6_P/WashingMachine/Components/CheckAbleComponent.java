@@ -1,8 +1,6 @@
 package UZ.Grzesiek.Lab6_P.WashingMachine.Components;
 
-import UZ.Grzesiek.Lab6_P.WashingMachine.Components.ComponentStatus;
-
-public interface CheckableComponent {
+public interface CheckAbleComponent {
     ComponentStatus getStatus();
     void setDefaultValue();
 }

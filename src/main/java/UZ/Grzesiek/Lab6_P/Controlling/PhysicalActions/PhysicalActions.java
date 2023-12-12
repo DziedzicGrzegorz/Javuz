@@ -4,7 +4,7 @@ package UZ.Grzesiek.Lab6_P.Controlling.PhysicalActions;
 import UZ.Grzesiek.Lab6_P.Controlling.PermissionValues;
 import UZ.Grzesiek.Lab6_P.StatusOfMachine.StatusOfMachine;
 import UZ.Grzesiek.Lab6_P.Utils.MSG;
-import UZ.Grzesiek.Lab6_P.WashingMachine.Components.CheckableComponent;
+import UZ.Grzesiek.Lab6_P.WashingMachine.Components.CheckAbleComponent;
 import UZ.Grzesiek.Lab6_P.WashingMachine.Components.DetergentContainer;
 import UZ.Grzesiek.Lab6_P.WashingMachine.Components.Drum;
 import UZ.Grzesiek.Lab6_P.WashingMachine.WashingMachine;
@@ -136,8 +136,9 @@ public class PhysicalActions implements PhysicalInterface {
         }
     }
 
+    @Override
     public StatusOfMachine AfterWashingResetValues() {
-        washingMachine.getCheckableComponents().forEach(CheckableComponent::setDefaultValue);
+        washingMachine.getCheckAbleComponents().forEach(CheckAbleComponent::setDefaultValue);
         return StatusOfMachine.OK;
     }
 }

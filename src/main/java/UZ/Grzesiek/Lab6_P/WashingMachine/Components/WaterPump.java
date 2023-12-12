@@ -1,10 +1,9 @@
 package UZ.Grzesiek.Lab6_P.WashingMachine.Components;
 
-
 import lombok.Data;
 
 @Data
-public class WaterPump implements CheckableComponent {
+public class WaterPump implements CheckAbleComponent {
     private ComponentStatus status;
     private int waterPressure;
 

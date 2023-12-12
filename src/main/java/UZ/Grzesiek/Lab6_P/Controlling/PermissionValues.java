@@ -22,7 +22,8 @@ public enum PermissionValues {
         this.minValue = minValue;
         this.maxValue = maxValue;
     }
-    public boolean isValueInRange(int value){
+
+    public boolean isValueInRange(int value) {
         return minValue <= value && value <= maxValue;
     }
 }
