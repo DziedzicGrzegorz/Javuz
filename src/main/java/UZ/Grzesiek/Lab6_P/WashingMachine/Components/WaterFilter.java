@@ -1,13 +1,9 @@
 package UZ.Grzesiek.Lab6_P.WashingMachine.Components;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.Data;
 
-@Getter
-@Setter
-@ToString
-public class WaterFilter implements CheckableComponent {
+@Data
+public class WaterFilter implements CheckAbleComponent {
     private ComponentStatus status;
     private int LevelOfPollution;
 

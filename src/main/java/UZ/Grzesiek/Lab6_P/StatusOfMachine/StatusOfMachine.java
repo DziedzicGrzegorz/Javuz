@@ -14,6 +14,7 @@ public enum StatusOfMachine {
     SERVICE_NEEDED(423);
 
     private final int statusCode;
+
     StatusOfMachine(int statusCode) {
         this.statusCode = statusCode;
     }

@@ -1,14 +1,14 @@
 package UZ.Grzesiek.Lab6_P.Controlling.Sensors;
 
-import UZ.Grzesiek.Lab6_P.Utils.MSG;
 import UZ.Grzesiek.Lab6_P.StatusOfMachine.StatusOfMachine;
+import UZ.Grzesiek.Lab6_P.Utils.MSG;
 import UZ.Grzesiek.Lab6_P.WashingMachine.Components.*;
 import UZ.Grzesiek.Lab6_P.WashingMachine.WashingMachine;
 
 import java.util.Arrays;
 import java.util.List;
 
-public class Sensors {
+public class Sensors implements SensorsInterface {
     private final WashingMachine washingMachine;
 
     public Sensors() {
@@ -16,7 +16,7 @@ public class Sensors {
     }
 
     public void checkAllComponents() {
-        List<CheckableComponent> components = Arrays.asList(
+        List<CheckAbleComponent> components = Arrays.asList(
                 washingMachine.getComponent(DetergentContainer.class),
                 washingMachine.getComponent(Drum.class),
                 washingMachine.getComponent(WaterFilter.class),
@@ -24,12 +24,13 @@ public class Sensors {
                 washingMachine.getComponent(WaterPump.class)
         );
 
-        for (CheckableComponent component : components) {
+        for (CheckAbleComponent component : components) {
             checkComponentStatus(component);
         }
     }
 
-    private void checkComponentStatus(CheckableComponent component) {
+    @Override
+    public void checkComponentStatus(CheckAbleComponent component) {
         ComponentStatus status = component.getStatus();
         String componentName = component.getClass().getSimpleName();
 

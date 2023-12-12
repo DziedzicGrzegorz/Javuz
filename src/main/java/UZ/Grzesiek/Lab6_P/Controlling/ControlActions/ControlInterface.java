@@ -1,15 +1,11 @@
 package UZ.Grzesiek.Lab6_P.Controlling.ControlActions;
 
-import UZ.Grzesiek.Lab6_P.StatusOfMachine.StatusOfMachine;
 import UZ.Grzesiek.Lab6_P.WashingMachine.WashingMachineModes;
 
-/**
- * The ControlInterface interface defines the methods for controlling a machine.
- */
-public interface ControlInterface {
-    StatusOfMachine powerOn();
-    StatusOfMachine powerOff();
-    public StatusOfMachine startWashing(WashingMachineModes modeToStart, int kgOfClothes);
 
-    StatusOfMachine stopWashing();
+public interface ControlInterface {
+    void powerOn();
+    void powerOff();
+    void startWashing(WashingMachineModes modeToStart, int kgOfClothes);
+    void stopWashing();
 }
