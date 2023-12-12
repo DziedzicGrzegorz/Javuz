@@ -15,7 +15,6 @@ public class PhysicalActions implements PhysicalInterface {
 
     protected final WashingMachine washingMachine;
 
-
     public PhysicalActions() {
         this.washingMachine = WashingMachine.getInstance();
     }
@@ -39,7 +38,6 @@ public class PhysicalActions implements PhysicalInterface {
             return StatusOfMachine.ERROR;
         }
     }
-
     @Override
     public StatusOfMachine pumpOutWater() {
 
@@ -56,7 +54,6 @@ public class PhysicalActions implements PhysicalInterface {
             return StatusOfMachine.ERROR;
         }
     }
-
     @Override
     public StatusOfMachine heatWater(int tempToAssign) {
         if (PermissionValues.TEMP_OF_WATER.isValueInRange(tempToAssign)) {
@@ -80,7 +77,6 @@ public class PhysicalActions implements PhysicalInterface {
             return StatusOfMachine.ERROR;
         }
     }
-
     @Override
     public StatusOfMachine balanceDrumContents() {
         MSG.print("Balancing drum contents...");
@@ -95,7 +91,6 @@ public class PhysicalActions implements PhysicalInterface {
             return StatusOfMachine.ERROR;
         }
     }
-
     @Override
     public StatusOfMachine addFabricSoftener(int amountOfSoftener) {
         if (PermissionValues.DETERGENT_CONTAINER_FABRIC_SOFTENER.isValueInRange(amountOfSoftener)) {
@@ -115,7 +110,6 @@ public class PhysicalActions implements PhysicalInterface {
             return StatusOfMachine.ERROR;
         }
     }
-
     @Override
     public StatusOfMachine addLaundryDetergent(int amountOfDetergent) {
         if (PermissionValues.DETERGENT_CONTAINER_LAUNDRY.isValueInRange(amountOfDetergent)) {
@@ -135,7 +129,6 @@ public class PhysicalActions implements PhysicalInterface {
             return StatusOfMachine.ERROR;
         }
     }
-
     @Override
     public StatusOfMachine AfterWashingResetValues() {
         washingMachine.getCheckAbleComponents().forEach(CheckAbleComponent::setDefaultValue);

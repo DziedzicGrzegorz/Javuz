@@ -59,26 +59,22 @@ public class WashingMachine {
             new WaterHeater(),
             new WaterPump()
     );
-
     private int waterTemperature;
     private int levelOfWater;
     private int spinningSpeed;
 
     private WashingMachine() {
     }
-
     public static WashingMachine getInstance() {
         if (instance == null) {
             instance = new WashingMachine();
         }
         return instance;
     }
-
     public static WashingMachine hardReset() {
         instance = null;
         return WashingMachine.getInstance();
     }
-
     public <T> T getComponent(Class<T> componentType) {
         for (CheckAbleComponent component : checkAbleComponents) {
             if (componentType.isInstance(component)) {
