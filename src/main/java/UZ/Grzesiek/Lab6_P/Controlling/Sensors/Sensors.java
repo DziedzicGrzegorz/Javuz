@@ -2,6 +2,7 @@ package UZ.Grzesiek.Lab6_P.Controlling.Sensors;
 
 import UZ.Grzesiek.Lab6_P.StatusOfMachine.StatusOfMachine;
 import UZ.Grzesiek.Lab6_P.Utils.MSG;
+import UZ.Grzesiek.Lab6_P.Utils.SpecificComponentException;
 import UZ.Grzesiek.Lab6_P.WashingMachine.Components.*;
 import UZ.Grzesiek.Lab6_P.WashingMachine.WashingMachine;
 
@@ -15,7 +16,7 @@ public class Sensors implements SensorsInterface {
         this.washingMachine = WashingMachine.getInstance();
     }
 
-    public void checkAllComponents() {
+    public void checkAllComponents() throws Exception {
         List<CheckAbleComponent> components = Arrays.asList(
                 washingMachine.getComponent(DetergentContainer.class),
                 washingMachine.getComponent(Drum.class),
@@ -29,7 +30,7 @@ public class Sensors implements SensorsInterface {
         }
     }
     @Override
-    public void checkComponentStatus(CheckAbleComponent component) {
+    public void checkComponentStatus(CheckAbleComponent component) throws Exception {
         ComponentStatus status = component.getStatus();
         String componentName = component.getClass().getSimpleName();
 
@@ -37,15 +38,19 @@ public class Sensors implements SensorsInterface {
             MSG.print(STR."Checking \{componentName}...");
             Thread.sleep(1000);
 
-            if (status != ComponentStatus.OK) {
+            if (status == ComponentStatus.SERVICE_NEEDED) {
                 MSG.print(STR."\{componentName} needs service!");
                 washingMachine.setStatus(StatusOfMachine.SERVICE_NEEDED);
-            } else {
-                MSG.print(STR."\{componentName} is OK!");
+            } else if(status == ComponentStatus.ERROR) {
+               throw new SpecificComponentException(STR."\{componentName} is broken!");
             }
-        } catch (Exception e) {
-            MSG.print(STR."Checking \{componentName} failed!");
-            MSG.print(e.getMessage());
+
+            MSG.print(STR."\{componentName} is OK!");
+
+        } catch (SpecificComponentException e) {
+            throw e;
+        }catch (Exception e){
+            MSG.print(STR."Something went wrong while checking \{componentName}!");
         }
     }
 }

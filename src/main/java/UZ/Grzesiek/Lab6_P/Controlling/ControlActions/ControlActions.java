@@ -1,9 +1,11 @@
 package UZ.Grzesiek.Lab6_P.Controlling.ControlActions;
 
+import UZ.Grzesiek.Lab6_P.WashingMachine.PermissionValues;
 import UZ.Grzesiek.Lab6_P.Controlling.PhysicalActions.PhysicalActions;
 import UZ.Grzesiek.Lab6_P.Controlling.Sensors.Sensors;
 import UZ.Grzesiek.Lab6_P.StatusOfMachine.StatusOfMachine;
 import UZ.Grzesiek.Lab6_P.Utils.MSG;
+import UZ.Grzesiek.Lab6_P.WashingMachine.WashingEffect.WashingEffect;
 import UZ.Grzesiek.Lab6_P.WashingMachine.WashingMachine;
 import UZ.Grzesiek.Lab6_P.WashingMachine.WashingMachineModes;
 import lombok.Data;
@@ -21,6 +23,7 @@ import lombok.EqualsAndHashCode;
 @Data
 public class ControlActions extends PhysicalActions implements ControlInterface {
     public ControlActions() {
+
         super();
     }
 
@@ -38,8 +41,11 @@ public class ControlActions extends PhysicalActions implements ControlInterface 
             washingMachine.setStatus(StatusOfMachine.ERROR);
         }
     }
+
     public void powerOff() {
         try {
+
+            Thread.sleep(1000);
             MSG.print("Powering off...");
 
             washingMachine.setStatus(StatusOfMachine.OFF);
@@ -50,15 +56,22 @@ public class ControlActions extends PhysicalActions implements ControlInterface 
             washingMachine.setStatus(StatusOfMachine.ERROR);
         }
     }
+
     public void startWashing(WashingMachineModes modeToStart, int kgOfClothes) {
+        if(!PermissionValues.CLOTHES_CONTAINER.isValueInRange(kgOfClothes)){
+            throw new IllegalArgumentException("Clothes container is full");
+        }
+
         try {
             Sensors sensors = new Sensors();
             sensors.checkAllComponents();
 
             MSG.print("Starting washing...");
             Thread.sleep(1000);
-            //@Todo connect washingMachine states with washingMachineModes
 
+            WashingEffect.start(modeToStart);
+
+            Thread.sleep(1000);
             MSG.print("Washing ended");
             washingMachine.setStatus(StatusOfMachine.OK);
 
@@ -67,6 +80,7 @@ public class ControlActions extends PhysicalActions implements ControlInterface 
             MSG.print(e.getMessage());
         }
     }
+
     public void stopWashing() {
         try {
             MSG.print("Stopping washing...");
@@ -79,6 +93,7 @@ public class ControlActions extends PhysicalActions implements ControlInterface 
             washingMachine.setStatus(StatusOfMachine.ERROR);
         }
     }
+
     public static WashingMachine reset() {
         return WashingMachine.hardReset();
     }

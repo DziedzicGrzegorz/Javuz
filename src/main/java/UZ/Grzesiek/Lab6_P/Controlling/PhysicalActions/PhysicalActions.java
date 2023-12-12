@@ -1,7 +1,7 @@
 package UZ.Grzesiek.Lab6_P.Controlling.PhysicalActions;
 
 
-import UZ.Grzesiek.Lab6_P.Controlling.PermissionValues;
+import UZ.Grzesiek.Lab6_P.WashingMachine.PermissionValues;
 import UZ.Grzesiek.Lab6_P.StatusOfMachine.StatusOfMachine;
 import UZ.Grzesiek.Lab6_P.Utils.MSG;
 import UZ.Grzesiek.Lab6_P.WashingMachine.Components.CheckAbleComponent;

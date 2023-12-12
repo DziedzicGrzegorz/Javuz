@@ -7,8 +7,7 @@ public class Main {
     public static void main(String[] args) {
         ControlActions controlActions = new ControlActions();
         controlActions.powerOn();
-        controlActions.startWashing(WashingMachineModes.RINSING, 10);
-        controlActions.stopWashing();
+        controlActions.startWashing(WashingMachineModes.customMode(30, 3, 8, true, 600),5);
         controlActions.powerOff();
     }
 }
