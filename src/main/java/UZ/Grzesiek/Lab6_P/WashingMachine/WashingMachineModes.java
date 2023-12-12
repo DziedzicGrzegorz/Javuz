@@ -1,7 +1,5 @@
 package UZ.Grzesiek.Lab6_P.WashingMachine;
 
-import UZ.Grzesiek.Lab6_P.WashingMachine.WashingEffect.WashingEffect;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data

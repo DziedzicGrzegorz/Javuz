@@ -15,6 +15,7 @@ public class WashingEffect {
     private WashingEffect(WashingMachineModes mode) {
         washingMachine = WashingMachine.getInstance();
         startMode(mode);
+        endMode();
     }
 
     public void startMode(WashingMachineModes mode) {
