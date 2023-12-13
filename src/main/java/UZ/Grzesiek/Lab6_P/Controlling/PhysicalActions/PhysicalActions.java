@@ -1,6 +1,5 @@
 package UZ.Grzesiek.Lab6_P.Controlling.PhysicalActions;
 
-
 import UZ.Grzesiek.Lab6_P.WashingMachine.PermissionValues;
 import UZ.Grzesiek.Lab6_P.StatusOfMachine.StatusOfMachine;
 import UZ.Grzesiek.Lab6_P.Utils.MSG;
@@ -9,7 +8,52 @@ import UZ.Grzesiek.Lab6_P.WashingMachine.Components.DetergentContainer;
 import UZ.Grzesiek.Lab6_P.WashingMachine.Components.Drum;
 import UZ.Grzesiek.Lab6_P.WashingMachine.WashingMachine;
 import lombok.Getter;
-
+/**
+ * The PhysicalActions class implements the PhysicalInterface and provides methods for performing physical actions on a washing machine.
+ * <p>
+ * Properties:
+ * - washingMachine: A reference to the WashingMachine instance that this class operates on.
+ * <p>
+ * Constructor:
+ * - The constructor initializes the washingMachine property with the singleton instance of the WashingMachine class.
+ * <p>
+ * Methods:
+ * <p>
+ * - pumpInWater:
+ *   Pumps water into the washing machine up to the specified level.
+ *   If the level is out of the allowed range, it returns an ERROR status.
+ *   If an exception occurs during the operation, it prints an error message and returns an ERROR status.
+ * <p>
+ * - pumpOutWater:
+ *   Pumps water out of the washing machine.
+ *   If an exception occurs during the operation, it prints an error message and returns an ERROR status.
+ * <p>
+ * - heatWater:
+ *   Heats the water in the washing machine to the specified temperature.
+ *   If the temperature is out of the allowed range, it returns an ERROR status.
+ *   If an exception occurs during the operation, it prints an error message and returns an ERROR status.
+ * <p>
+ * - balanceDrumContents:
+ *   Balances the contents of the washing machine drum.
+ *   If an exception occurs during the operation, it prints an error message and returns an ERROR status.
+ * <p>
+ * - addFabricSoftener:
+ *   Adds the specified amount of fabric softener to the washing machine.
+ *   If the amount is out of the allowed range, it returns an ERROR status.
+ *   If an exception occurs during the operation, it prints an error message and returns an ERROR status.
+ * <p>
+ * - addLaundryDetergent:
+ *   Adds the specified amount of laundry detergent to the washing machine.
+ *   If the amount is out of the allowed range, it returns an ERROR status.
+ *   If an exception occurs during the operation, it prints an error message and returns an ERROR status.
+ * <p>
+ * - AfterWashingResetValues:
+ *   Resets the values of all checkable components of the washing machine after washing.
+ *   It always returns an OK status.
+ * <p>
+ * @see WashingMachine
+ * @see PhysicalInterface
+ */
 @Getter
 public class PhysicalActions implements PhysicalInterface {
 

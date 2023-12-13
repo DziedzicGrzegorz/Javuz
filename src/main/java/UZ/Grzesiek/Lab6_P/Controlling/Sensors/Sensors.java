@@ -8,7 +8,32 @@ import UZ.Grzesiek.Lab6_P.WashingMachine.WashingMachine;
 
 import java.util.Arrays;
 import java.util.List;
-
+/**
+ * The Sensors class implements the SensorsInterface and provides methods for checking the status of the components of a washing machine.
+ * <p>
+ * Properties:
+ * - washingMachine: A reference to the WashingMachine instance that this class operates on.
+ * <p>
+ * Constructor:
+ * - The constructor initializes the washingMachine property with the singleton instance of the WashingMachine class.
+ * <p>
+ * Methods:
+ * <p>
+ * - checkAllComponents:
+ *   Checks the status of all components of the washing machine.
+ *   It gets the components from the washing machine and calls the checkComponentStatus method for each component.
+ *   If an exception occurs during the operation, it throws the exception.
+ * <p>
+ * - checkComponentStatus:
+ *   Checks the status of a specific component of the washing machine.
+ *   It gets the status and name of the component, and prints a message indicating the status.
+ *   If the status is SERVICE_NEEDED, it sets the washing machine's status to SERVICE_NEEDED and prints a message.
+ *   If the status is ERROR, it throws a SpecificComponentException.
+ *   If an exception occurs during the operation, it prints an error message.
+ * <p>
+ * @see WashingMachine
+ * @see SensorsInterface
+ */
 public class Sensors implements SensorsInterface {
     private final WashingMachine washingMachine;
 
