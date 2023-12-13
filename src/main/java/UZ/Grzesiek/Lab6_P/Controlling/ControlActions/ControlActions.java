@@ -11,14 +11,39 @@ import UZ.Grzesiek.Lab6_P.WashingMachine.WashingMachineModes;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-/**
- * The ControlActions class extends the PhysicalActions class.
- * It provides methods to control the actions of a washing machine.
- * These actions include powering on and off the machine, starting and stopping the washing process, and pausing the washing process.
- * Each method returns a StatusOfMachine object that indicates the status of the machine after the action is performed.
- * The class also includes a method to reset the washing machine.
- */
 
+/**
+ * This class, ControlActions, extends the PhysicalActions class and implements the ControlInterface.
+ * It represents the control actions of a washing machine, including methods to power on/off the machine, start/stop a wash, and reset the machine.
+ * <p>
+ * Properties:
+ * - Inherits all properties from the superclass, look at {@link  PhysicalActions}.
+ * <p>
+ * Constructor:
+ * - The constructor initializes the superclass.
+ * <p>
+ Methods:
+ * <p>
+ * - powerOn:
+ *   Powers on the washing machine and sets its status to OK.
+ *   If an exception occurs, it sets the status to ERROR and prints an error message.
+ * <p>
+ * - powerOff:
+ *   Powers off the washing machine and sets its status to OFF.
+ *   If an exception occurs, it sets the status to ERROR and prints an error message.
+ * <p>
+ * - startWashing:
+ *   Starts a wash with the given mode and amount of clothes.
+ *   It checks all components of the washing machine before starting the wash.
+ *   If an exception occurs, it prints an error message.
+ * <p>
+ * - stopWashing:
+ *   Stops the current wash and sets the washing machine's status to STOPPED.
+ *   If an exception occurs, it sets the status to ERROR and prints an error message.
+ * <p>
+ * - reset:
+ *   Resets the washing machine by calling the hardReset method of the WashingMachine class.
+ */
 @EqualsAndHashCode(callSuper = true)
 @Data
 public class ControlActions extends PhysicalActions implements ControlInterface {

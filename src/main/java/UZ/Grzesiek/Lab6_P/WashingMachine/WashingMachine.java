@@ -7,43 +7,41 @@ import java.util.List;
 import lombok.Data;
 
 /**
- * The WashingMachine class represents a washing machine object.
- * It provides methods to control and monitor the washing machine's status and settings.
- *
+ * The WashingMachine class represents a washing machine.
  * <p>
- * The class includes the following functionalities:
- * - Getting and setting the active mode of the washing machine.
- * - Getting and setting the temperature of the water.
- * - Getting and setting the spinning speed of the machine.
- * - Getting and setting the detergent container level.
- * - Getting and setting the weight of the clothes container.
- * - Getting and setting the level of water in the machine.
- * - Getting and setting the status of the water filter.
- * - Getting the water pressure.
- * - Performing a hard reset of the washing machine.
- * </p>
- *
+ * Properties:
  * <p>
- * The class also relies on the nested class {@link WashingMachineModes} for representing the different modes of operation.
- * </p>
- *
+ * - status:
+ *   The current status of the washing machine. It can be OK, SERVICE_NEEDED, or ERROR.
  * <p>
- * Usage example:
- * </p>
- *
- * <pre>
- *     WashingMachine washingMachine = WashingMachine.getInstance();
- *     washingMachine.setActiveMode(WashingMachineModes.WASHING_CLASSIC);
- *     washingMachine.setTemperatureOfWater(60);
- *     washingMachine.setSpinningSpeed(1200);
- *     washingMachine.setDetergentContainer(10);
- *     washingMachine.setWeightOfClothesContainer(5);
- *     washingMachine.setLevelOfWater(3);
- *     washingMachine.setWaterFilterStatus(WashingMachine.WaterFilterStatus.OK);
- *     double waterPressure = washingMachine.getWaterPressure();
- * </pre>
- *
- * @see WashingMachineModes
+ * - waterTemperature:
+ *   The current temperature of the water in the washing machine.
+ * <p>
+ * - spinningSpeed:
+ *   The current spinning speed of the washing machine.
+ * <p>
+ * - levelOfWater:
+ *   The current level of water in the washing machine.
+ * <p>
+ * Constructor:
+ * - The constructor initializes the properties.
+ * <p>
+ * Methods:
+ * <p>
+ * - getInstance:
+ *   A static method that returns the singleton instance of the WashingMachine class.
+ * <p>
+ * - setWaterTemperature:
+ *   Sets the water temperature of the washing machine.
+ * <p>
+ * - setSpinningSpeed:
+ *   Sets the spinning speed of the washing machine.
+ * <p>
+ * - setLevelOfWater:
+ *   Sets the level of water in the washing machine.
+ * <p>
+ * @see CheckAbleComponent
+ * @see ComponentStatus
  */
 @Data
 public class WashingMachine {

@@ -1,7 +1,17 @@
 package UZ.Grzesiek.Lab6_P.WashingMachine;
 
 import lombok.Getter;
-
+/**
+ * The PermissionValues enum defines the permissible ranges for various settings in a washing machine.
+ * <p>
+ * Each enum constant represents a specific setting and has a minimum and maximum value.
+ * <p>
+ * Methods:
+ * <p>
+ * - isValueInRange:
+ *   Checks if a given value is within the permissible range for the setting.
+ * <p>
+ */
 @Getter
 public enum PermissionValues {
 

@@ -1,7 +1,48 @@
 package UZ.Grzesiek.Lab6_P.WashingMachine;
 
+import UZ.Grzesiek.Lab6_P.WashingMachine.Components.CheckAbleComponent;
+import UZ.Grzesiek.Lab6_P.WashingMachine.Components.ComponentStatus;
 import lombok.Data;
-
+/**
+ * The WashingMachineModes class represents the different modes of a washing machine.
+ * <p>
+ * Properties:
+ * <p>
+ * - waterTemperature:
+ *   The water temperature for the wash.
+ * <p>
+ * - preWashTime:
+ *   The time for the pre-wash phase.
+ * <p>
+ * - mainWashTime:
+ *   The time for the main wash phase.
+ * <p>
+ * - spinningSpeed:
+ *   The speed of the spinning phase.
+ * <p>
+ * - extraRinse:
+ *   Whether an extra rinse is required.
+ * <p>
+ * - extraRinseTime:
+ *   The time for the extra rinse phase.
+ * <p>
+ * Constructor:
+ * - The constructor validates the mode settings and sets the properties.
+ * <p>
+ * Methods:
+ * <p>
+ * - customMode:
+ *   Creates a custom washing machine mode with the given parameters.
+ * <p>
+ * - validateModeSettings:
+ *   Validates the settings for a washing machine mode.
+ * <p>
+ * - validateSetting:
+ *   Validates a specific setting for a washing machine mode.
+ * <p>
+ * @see CheckAbleComponent
+ * @see ComponentStatus
+ */
 @Data
 public class WashingMachineModes {
     protected int waterTemperature;
