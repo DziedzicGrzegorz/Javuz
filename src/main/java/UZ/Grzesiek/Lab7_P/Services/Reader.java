@@ -20,7 +20,6 @@ import org.jetbrains.annotations.Nullable;
 @Data
 public class  Reader {
 
-
     public static void main(String[] args) {
         String fileName = "/Users/grzegorzdziedzic/DevContainer/IdeaProjects/Javuz/src/main/java/UZ/Grzesiek/Lab7_P/data.txt";
 

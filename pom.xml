@@ -7,6 +7,10 @@
     <groupId>org.example</groupId>
     <artifactId>JavuzMaven</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <modules>
+        <module>WashingMachine</module>
+    </modules>
 
     <properties>
         <maven.compiler.source>21</maven.compiler.source>
