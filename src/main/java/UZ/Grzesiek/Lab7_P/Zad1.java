@@ -1,6 +1,5 @@
 package UZ.Grzesiek.Lab7_P;
 
-import lombok.*;
 
 public class Zad1 {
     double result = 0.0;
@@ -25,5 +24,4 @@ public class Zad1 {
     void display() {
         System.out.println(result);
     }
-
 }
