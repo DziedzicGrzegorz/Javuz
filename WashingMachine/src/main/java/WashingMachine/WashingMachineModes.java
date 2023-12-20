@@ -1,6 +1,5 @@
 package WashingMachine;
 
-import Utils.MSG;
 import WashingMachine.Components.CheckAbleComponent;
 import WashingMachine.Components.ComponentStatus;
 import lombok.Data;

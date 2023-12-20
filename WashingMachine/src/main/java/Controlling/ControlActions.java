@@ -2,7 +2,6 @@ package Controlling;
 
 import StatusOfMachine.StatusOfMachine;
 import Utils.MSG;
-import WashingMachine.Components.DetergentContainer;
 import WashingMachine.PermissionValues;
 import WashingMachine.WashingEffect.WashingEffect;
 import WashingMachine.WashingMachine;
@@ -91,8 +90,6 @@ public class ControlActions extends PhysicalActions implements ControlInterface 
 
         prepareForWashing(FabricSoftener, LaundryDetergent);
         performWashingCycle(modeToStart);
-
-
 
         finishWashing();
     }
