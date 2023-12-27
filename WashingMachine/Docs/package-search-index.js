@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"Controlling"},{"l":"StatusOfMachine"},{"l":"Utils"},{"l":"WashingMachine"},{"l":"WashingMachine.Components"},{"l":"WashingMachine.WashingEffect"}];updateSearchResults();
